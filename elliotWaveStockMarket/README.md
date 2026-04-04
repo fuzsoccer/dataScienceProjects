@@ -99,6 +99,24 @@ This reflects the standard **5–3 wave cycle** used in Elliott Wave Theory
 
 ---
 
+## 🤖 Model Output / Decision Framework
+
+- Detected wave structures are used to classify the current market phase:
+  - Impulse phase (trend continuation)  
+  - Corrective phase (potential reversal)  
+
+- The most recent wave point is used as a signal for potential trend direction:
+  - Upward movement → bullish signal  
+  - Downward movement → bearish signal  
+
+### Decision Use Case
+
+- Identify potential entry/exit points based on wave phase  
+- Generate rule-based signals for trend continuation or reversal  
+- Serve as feature input for predictive financial models  
+
+---
+
 ## 💡 Implications & Applications
 
 - Provides a systematic approach to identifying market cycles without manual labeling  
