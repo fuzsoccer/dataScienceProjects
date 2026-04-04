@@ -65,12 +65,34 @@ This project aims to:
 
 ---
 
+## 📊 Insights & Findings
+
+- Weekly attendance trends can be clearly identified after aggregating event-level data into consistent weekly intervals  
+- Attendance varies across groups, with some groups showing stable participation while others exhibit higher variability  
+- Linear trend modeling reveals whether individual groups are growing or declining over time  
+- Removing canceled and future events ensures more accurate representation of historical attendance patterns  
+- Standardizing time intervals (weekly aggregation) enables consistent comparison across groups and time periods
+
+---
+
+## 💡 Implications & Applications
+
+- Enables leadership to monitor attendance trends and identify growth or decline across groups  
+- Supports data-driven decisions for staffing, scheduling, and resource allocation  
+- Identifies groups with inconsistent engagement for targeted outreach and improvement  
+- Provides a foundation for forecasting future attendance and planning capacity needs
+
+---
+
 ## 📊 Example Outputs
 
-- Weekly attendance trend charts  
-- Growth/decline analysis over time  
-- Comparative attendance across groups  
-- Smoothed trend lines for long-term insights  
+- Event-level attendance dataset aggregated from Planning Center API  
+- Weekly attendance summaries by group, enabling time-series analysis  
+- CSV outputs:
+  - `group_event_attendance_raw.csv` (event-level data)  
+  - `group_weekly_attendance.csv` (aggregated weekly data)  
+- Time-series plots of weekly attendance per group  
+- Regression trend lines showing growth or decline in attendance over time  
 
 ---
 
