@@ -69,12 +69,30 @@ This project aims to:
 
 ---
 
+## 📊 Insights & Findings
+
+- Multiple flights can be captured in a localized geographic region, enabling real-time air traffic monitoring  
+- Flight metadata such as aircraft type and seat capacity provides insight into flight scale and operational characteristics  
+- Origin and destination data enables analysis of common routes and regional traffic patterns
+
+---
+
+## 💡 Implications & Applications
+
+- Provides a foundation for real-time flight monitoring systems  
+- Enables development of aviation analytics such as route frequency and traffic density  
+- Can be extended for anomaly detection (e.g., unexpected routes or aircraft types)  
+- Supports integration into dashboards for operational or logistical insights
+
+---
+
 ## 📊 Example Outputs
 
-- Flight trajectory plots  
-- Altitude vs time graphs  
-- Speed and movement trends  
-- Geographic mapping of aircraft positions  
+    Callsign: UAL1407
+    Seat Capacity: None
+    Model: Boeing 737-824
+    Origin: Houston George Bush Intercontinental Airport (Houston, United States)
+    Destination: San Antonio International Airport (San Antonio, United States)
 
 ---
 
