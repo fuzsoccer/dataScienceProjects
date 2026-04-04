@@ -90,17 +90,17 @@ This project aims to:
 
 ## 🤖 Model Output / Decision Framework
 
-- Flight data is structured into standardized records for analysis  
-- Flights can be categorized based on:
-  - Aircraft type  
-  - Route (origin-destination)  
-  - Capacity  
+- Player performance is evaluated using cumulative and rolling batting averages  
+- Players are classified as:
+  - Consistent performers (low variance, stable averages)  
+  - High-variance players (large fluctuations in performance)  
+  - Overperforming or underperforming relative to career averages
 
 ### Decision Use Case
 
-- Monitor air traffic density within a region  
-- Identify common routes and high-frequency corridors  
-- Enable anomaly detection for unusual flight patterns  
+- Prioritize consistent players for starting lineups  
+- Identify breakout candidates based on upward trends  
+- Flag regression risks when current performance exceeds historical baseline  
 
 ---
 
