@@ -84,6 +84,23 @@ This project aims to:
 
 ---
 
+## 🤖 Model Output / Decision Framework
+
+- A linear trend model is applied to weekly attendance to estimate growth or decline over time  
+- The slope of the regression line represents weekly change in attendance (e.g., +2 attendees per week)  
+- Groups can be classified as:
+  - Growing (positive slope)  
+  - Stable (near-zero slope)  
+  - Declining (negative slope)  
+
+### Decision Use Case
+
+- Identify groups that require intervention (declining attendance)  
+- Allocate resources to high-growth groups  
+- Forecast future attendance for planning and capacity management  
+
+---
+
 ## 📊 Example Outputs
 
 - Event-level attendance dataset aggregated from Planning Center API  
