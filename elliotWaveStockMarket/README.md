@@ -1,0 +1,117 @@
+# 📈 Elliott Wave Detection & Time-Series Signal Extraction
+
+## 🧠 Overview
+
+This project implements a signal-processing pipeline to identify and approximate **Elliott Wave structures** in financial time series data.
+
+Elliott Wave Theory suggests that financial markets move in recurring patterns driven by investor psychology, typically consisting of **5 impulse waves followed by 3 corrective waves**.  [oai_citation:0‡Angel One](https://www.angelone.in/knowledge-center/share-market/elliott-wave-theory?utm_source=chatgpt.com)  
+
+This project translates that qualitative theory into a **quantitative, algorithmic framework** using peak detection, feature engineering, and rule-based filtering.
+
+The goal is to transform noisy price data into structured signals that can support **analysis, visualization, and future predictive modeling**.
+
+---
+
+## 🎯 Problem Statement
+
+Financial time series data is:
+
+- Noisy and non-linear  
+- Difficult to segment into meaningful structures  
+- Challenging to interpret consistently using manual techniques  
+
+Traditional Elliott Wave analysis is:
+
+- Subjective and analyst-dependent  
+- Not scalable  
+- Difficult to validate  
+
+This project aims to:
+
+- Detect turning points in price data algorithmically  
+- Enforce structural constraints based on wave theory  
+- Create a reproducible framework for wave identification  
+
+---
+
+## ⚙️ Methodology
+
+### 1. Data Collection
+- Historical stock price data retrieved using `yfinance`  
+- Monthly aggregation used to reduce noise and highlight long-term trends  
+
+---
+
+### 2. Signal Processing
+
+- Local maxima (peaks) and minima (troughs) detected using:
+  - `scipy.signal.find_peaks`  
+- Dynamic prominence threshold based on price volatility  
+- Ensures detection adapts across different stocks and price scales  
+
+---
+
+### 3. Structural Filtering
+
+- Peaks and troughs are merged and sorted chronologically  
+- A custom algorithm enforces **alternating directionality**:
+  - peak → trough → peak  
+
+This aligns with Elliott Wave structure, where markets alternate between upward and downward movement driven by sentiment cycles.  [oai_citation:1‡Industri UMA](https://industri.uma.ac.id/2023/02/15/introduction-to-elliott-wave-theory/?utm_source=chatgpt.com)  
+
+---
+
+### 4. Wave Approximation
+
+- Up to 9 turning points are selected  
+- Labeled as:
+  - Impulse waves: `0–5`  
+  - Corrective waves: `A–C`  
+
+This reflects the standard **5–3 wave cycle** used in Elliott Wave Theory  
+
+---
+
+### 5. Trend Detection
+
+- Simple trend classification:
+  - Uptrend or downtrend based on price movement  
+- Provides context for interpreting wave structure  
+
+---
+
+### 6. Visualization
+
+- Time series plotted with:
+  - Annotated wave labels  
+  - Highlighted turning points  
+- Enables visual validation of detected structures  
+
+---
+
+## 📊 Example Output
+
+- Annotated price charts with wave labels  
+- Identified turning points in long-term price series  
+- Structured segmentation of financial time series  
+
+---
+
+## 🧰 Technical Stack
+
+- **Language:** Python  
+- **Libraries:**  
+  - Pandas  
+  - NumPy  
+  - SciPy (`find_peaks`)  
+  - Matplotlib  
+  - yfinance  
+
+---
+
+## 🚀 How to Run
+
+1. Clone the repository:
+```bash
+git clone https://github.com/fuzsoccer/dataScienceProjects.git
+cd dataScienceProjects/elliotWaveStockMarket
