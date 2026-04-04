@@ -84,7 +84,23 @@ This project aims to:
 - Enables data-driven roster decisions by focusing on long-term performance rather than short-term fluctuations  
 - Helps identify consistent players versus high-variance performers for lineup optimization  
 - Supports trade and waiver decisions by identifying regression or breakout candidates  
-- Provides a framework for evaluating team strength and competitive positioning over time  
+- Provides a framework for evaluating team strength and competitive positioning over time
+
+---
+
+## 🤖 Model Output / Decision Framework
+
+- Flight data is structured into standardized records for analysis  
+- Flights can be categorized based on:
+  - Aircraft type  
+  - Route (origin-destination)  
+  - Capacity  
+
+### Decision Use Case
+
+- Monitor air traffic density within a region  
+- Identify common routes and high-frequency corridors  
+- Enable anomaly detection for unusual flight patterns  
 
 ---
 
