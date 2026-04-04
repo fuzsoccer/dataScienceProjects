@@ -89,11 +89,31 @@ This reflects the standard **5–3 wave cycle** used in Elliott Wave Theory
 
 ---
 
-## 📊 Example Output
+## 📊 Insights & Findings
 
-- Annotated price charts with wave labels  
-- Identified turning points in long-term price series  
-- Structured segmentation of financial time series  
+- Peak and trough detection identifies major turning points in long-term price series, enabling segmentation of market cycles  
+- Detected wave structures exhibit alternating patterns consistent with expected market behavior (uptrend vs corrective phases)  
+- Monthly aggregation reduces short-term noise, allowing clearer identification of structural trends  
+- Limiting wave points to key turning points simplifies complex time series into interpretable segments  
+- The approach demonstrates how noisy financial data can be transformed into structured signals using rule-based methods
+
+---
+
+## 💡 Implications & Applications
+
+- Provides a systematic approach to identifying market cycles without manual labeling  
+- Enables development of rule-based trading signals based on detected wave structures  
+- Supports feature engineering for machine learning models (e.g., trend phase, wave length, reversal points)  
+- Demonstrates how signal processing techniques can be applied to financial time series data
+
+---
+
+## 📊 Example Outputs & Visualizations
+
+- Monthly stock price time series with detected peaks and troughs  
+- Annotated Elliott Wave approximation with labeled wave points (0–5, A–C)  
+- Visualization of turning points representing major market movements  
+- Simplified structural representation of price trends derived from noisy data
 
 ---
 
