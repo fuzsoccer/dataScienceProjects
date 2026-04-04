@@ -90,9 +90,12 @@ This project aims to:
 
 ## 📊 Example Outputs
 
-- Player performance trend charts  
-- Distribution plots of key statistics  
-- Comparative analysis between players  
+- Weekly team rankings based on cumulative win percentage  
+- Visualization of team performance trends over time (Wins, Losses, Ties)  
+- Cumulative statistics tracking (e.g., Home Runs, Strikeouts) by team  
+- Player-level batting performance charts showing daily and cumulative averages  
+- Comparison of current player performance vs career batting averages  
+- Time-series plots highlighting performance trends and variability across players
 
 ---
 
