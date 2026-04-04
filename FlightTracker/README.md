@@ -86,6 +86,22 @@ This project aims to:
 
 ---
 
+## 🤖 Model Output / Decision Framework
+
+- Flight data is structured into standardized records for analysis  
+- Flights can be categorized based on:
+  - Aircraft type  
+  - Route (origin-destination)  
+  - Capacity  
+
+### Decision Use Case
+
+- Monitor air traffic density within a region  
+- Identify common routes and high-frequency corridors  
+- Enable anomaly detection for unusual flight patterns  
+
+---
+
 ## 📊 Example Outputs
 
     Callsign: UAL1407
