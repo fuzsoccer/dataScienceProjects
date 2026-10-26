@@ -23,9 +23,9 @@ Projects are developed in a notebook-first format to support iterative explorati
 ## ⚙️ Technical Stack
 
 - **Languages:** Python  
-- **Libraries:** Pandas, NumPy, SciPy, Matplotlib, Scikit-learn  
+- **Libraries:** Pandas, NumPy, SciPy, Matplotlib, Scikit-learn, Statsmodels
 - **Data Sources:** APIs (e.g., yfinance), structured datasets  
-- **Tools:** Jupyter Notebook  
+- **Tools:** Jupyter Notebook, Tableau
 
 ---
 
