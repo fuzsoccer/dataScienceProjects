@@ -1,0 +1,11 @@
+oregon_puf.zip
+*.dta
+ohie_analysis_ready.csv
+dataverse_files/
+dataverse_files.zip
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+.env
+
+.portfolio_backups/
