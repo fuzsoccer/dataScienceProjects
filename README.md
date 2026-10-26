@@ -1,6 +1,6 @@
 # 📊 Data Science Projects
 
-A collection of applied data science projects focused on **time-series analysis, statistical modeling, causal inference, and visualization using real-world data**..
+A collection of applied data science projects focused on **time-series analysis, statistical modeling, causal inference, and visualization using real-world data**.
 
 This repository showcases practical implementations of data science techniques using Python, with an emphasis on transforming noisy datasets into structured, actionable insights.
 
@@ -103,3 +103,4 @@ Lottery selection increased the estimated probability of any recorded emergency 
 ```bash
 git clone https://github.com/fuzsoccer/dataScienceProjects.git
 cd dataScienceProjects
+```
