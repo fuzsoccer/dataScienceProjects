@@ -93,7 +93,7 @@ Lottery selection increased the estimated probability of any recorded emergency 
 - Regression adjustment and statistical uncertainty
 - Clear communication of findings and limitations
 
-[Explore the project](./Oregon%20Medicaid%20ED/)
+[Explore the project](./OregonMedicaidED/)
 
 ---
 
