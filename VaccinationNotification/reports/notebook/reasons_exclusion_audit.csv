@@ -1,0 +1,9 @@
+algo_condition,num_reasons,risk_condition,contra,dieddu,earlyvax,included,negreasons
+algorithm,1reason,top10,39,2,58,3051,8
+algorithm,1reason,top3,22,3,52,1275,1
+algorithm,3reasons,top10,34,5,67,2913,136
+algorithm,3reasons,top3,24,5,24,1286,12
+medrec,1reason,top10,40,8,65,3036,5
+medrec,1reason,top3,22,4,43,1282,0
+medrec,3reasons,top10,37,3,78,2879,151
+medrec,3reasons,top3,21,4,38,1273,14

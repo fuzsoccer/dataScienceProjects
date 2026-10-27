@@ -1,0 +1,86 @@
+Study 2 data dictionary
+Gail Rosenbaum
+2026-04-16
+
+
+study_2_fulldata_deid.rds/.csv: all enrolled patients in the study
+
+s_ID: randomly generated identifier
+
+race, ethnicity, sex: race, ethnicity and sex according to the patient's electronic health record at Geisinger
+
+modalities_orig = the modalities the patient was eligible for at enrollment (Letter, patient portal and/or SMS)
+
+letter_sent: 1 = the patient was sent a letter (or in passive control, was eligible for a letter when letters were sent); 0 = patient was not sent a letter
+
+portal_sent: 1 = the patient was sent a portal message (or in passive control, was eligible for a portal message when portal messages were sent); 0 = patient was not sent a portal message
+
+sms_sent: 1 = the patient was sent an SMS text message (or in passive control, was eligible for SMS when SMS was sent); 0 = patient was not sent an SMS
+
+risk_condition: top3 = patient was in the top 3% of risk; top10 = patient was in the top 4-10% of risk based on the model
+
+algo_condition: the main condition of interest in the study; nocontact = passive control, control = active control, unspecified = high risk only, medrec = high risk medical records, algorithm = high risk algorithm 
+
+num_reasons: number of risk reasons patient was assigned to be sent, if in the medrec or algorithm arm that was sent reasons
+
+vaccinated: 1 = got a flu shot during the primary time frame, 0 = did not get a flu shot during the primary outcome time frame
+
+exclude_reason: earlyvax = the patient was vaccinated before the letters were sent; contra = the patient was identified as contraindicated for flu shots; negreasons = the patient was sent protective risk reasons in their letter, or would have been sent protective risk reasons if they had been sent reasons; dieddu = deceased during the study; NA = patient was included in the analysis 
+
+
+
+study_2_analysis_data_deid.rds/.csv: only patients in the analysis dataset
+
+s_ID: randomly generated identifier
+
+race, ethnicity, sex: race, ethnicity and sex according to the patient's electronic health record at Geisinger
+
+age65plus: <65 = patient age is under 65; 65+ = patient is age 65 or older
+
+age_bin: age range of the patient: 18-24, 25-34, 35-44, 45-54, 55-64, 65+
+
+modalities: which of the modalities the patient was sent in the study (Letter, patient portal and/or SMS) (or in passive control, moralities the patient was eligible for as of time messages were sent)
+
+sms_date_bin: early = patient was sent their text message on the early date; late = patient was sent their text message on the late date
+
+dup_address: 1 = the patient shared an address with another patient in the study; 0 = the patient did not share an address with another patient in the study
+
+geis_pcp: 1 = the patient had a primary care provider who worked at Geisinger; 0 = the patient had no assigned primary care provider or their assigned primary care provider did not work at Geisinger
+
+algo_condition: the main condition of interest in the study; nocontact = passive control, control = active control, unspecified = high risk only, medrec = high risk medical records, algorithm = high risk algorithm 
+
+risk_condition: top3 = patient was in the top 3% of risk; top10 = patient was in the top 4-10% of risk based on the model
+
+num_reasons: number of risk reasons patient was assigned to be sent, if in the medrec or algorithm arm that was sent reasons
+
+vaccinated: 1 = got a flu shot during the primary time frame, 0 = did not get a flu shot during the primary outcome time frame
+
+vax_source: EHR_data = vaccine was documented in the electronic health record; Non_EHR_data = vaccine was documented outside the electronic health record; NA = no vaccine recorded for the primary outcome
+
+vaccinated_4weeks: 1 = got a flu shot within 4 weeks following enrollment (i.e. 29 days - enrollment day plus the following 4 weeks); 0: not vaccinated within 4 weeks following enrollment
+
+
+
+
+study_2_time_data.rds/.csv: aggregated vaccination data for timing analyses
+
+time: days since study start
+
+algo_condition: study condition: Passive control, Active control, High risk only, High risk medical records + reasons, High risk algorithm + reasons
+
+wkend: whether the day in the time column was a weekday or weekend
+
+vaccinated_analysis_df_0: number of patients who were vaccinated on this day/condition but WERE NOT in the main analysis dataset
+
+vaccinated_analysis_df_1: number of patients who were vaccinated on this day and WERE in the analysis dataset
+
+holiday: this day was a holiday 
+
+buis_day_from_letter: number of business days from sending the letter
+
+sms_early: number of patients in the analysis data who got an early text message and were vaccinated on this day
+
+sms_late: number of patients in the analysis data who got a late text message and were vaccinated on this day
+
+
+

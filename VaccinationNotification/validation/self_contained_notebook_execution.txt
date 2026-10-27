@@ -1,0 +1,5 @@
+17 code cells executed in a fresh IPython session without errors.
+2 charts embedded; tables saved inline.
+Rates, main models, risk-adjusted models, reasons contrasts, and logistic models match validated script outputs.
+No project-script calls/imports or precomputed report inputs.
+Separate Jupyter kernel transport was not retested; execution used IPython directly.

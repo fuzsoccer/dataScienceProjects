@@ -1,0 +1,1513 @@
+---
+title: "Study 2 results for Algorithm-assisted personalized risk communication to encourage flu vaccination: three randomized field trials"
+date: "04/16/2026"
+author: "Gail Rosenbaum"
+output: 
+    html_document:
+        toc: yes
+        toc_depth: 4
+        toc_float: TRUE
+        df_print: "paged"
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+# Setup
+## Load Libraries
+```{r libraries, include=FALSE}
+
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(lubridate)
+library(here)
+library(sjPlot)
+library(formattable)
+library(emmeans)
+library(ggsignif)
+library(jtools)
+library(ggmagnify)
+library(ggtext)
+library(kableExtra)
+
+```
+
+## Import functions
+```{r}
+
+source(here("scripts/bar_plot_functions_2023-01-06.R"))
+
+source(here("scripts/plot_theme_medial.R"))
+
+```
+
+## load data
+```{r}
+
+fulldata <- read_rds(here("data_deidentified/study_2_fulldata_deid.rds"))
+analysis_data <- read_rds(here("data_deidentified/study_2_analysis_data_deid.rds"))
+timedata <- read_rds(here("data_deidentified/study_2_time_data.rds"))
+
+
+```
+
+# CONSORT diagram
+## Excluded before study
+```{r}
+
+# NOTE - there were 45164 patients randomized; we found out that 103 patients had died between randomization and the first message send date, so those patients were not considered to be enrolled
+
+45164 - nrow(fulldata)
+
+
+```
+
+## Enrolled, and modalities
+```{r}
+
+table(fulldata$algo_condition)
+
+table(fulldata$letter_sent,fulldata$algo_condition)
+table(fulldata$portal_sent,fulldata$algo_condition)
+table(fulldata$sms_sent,fulldata$algo_condition)
+
+```
+
+## Analyzed
+```{r}
+
+#analyzed
+table(analysis_data$algo_condition)
+
+# excluded
+excluded_from_analysis <- subset(fulldata, !is.na(exclude_reason))
+
+table(excluded_from_analysis$exclude_reason, useNA = "always")
+
+addmargins(table(excluded_from_analysis$exclude_reason,
+      excluded_from_analysis$algo_condition, useNA = "always"))
+
+```
+
+
+# analysis
+## setup
+### make condition labels variables for plotting
+```{r}
+analysis_data$algo_condition_plot <- factor(
+  analysis_data$algo_condition, 
+  levels = c("nocontact","control","unspecified","medrec","algorithm"), 
+  labels = c("Passive\ncontrol\n","Active\ncontrol\n","High risk\nonly\n",
+             "High risk\nmedical records\n+ reasons",
+             "High risk\nalgorithm\n+ reasons"))
+
+fulldata$algo_condition_plot <- factor(
+  fulldata$algo_condition, 
+  levels = c("nocontact","control","unspecified","medrec","algorithm"), 
+  labels = c("Passive\ncontrol\n","Active\ncontrol\n","High risk\nonly\n",
+             "High risk\nmedical records\n+ reasons",
+             "High risk\nalgorithm\n+ reasons"))
+```
+
+
+## primary outcome
+### fig 2
+```{r}
+
+
+fig2_df <- make_proportions(
+  analysis_data, "vaccinated","algo_condition_plot",
+                              ndecimals = 1)
+
+fig2_df$condition_rev <- fct_rev(fig2_df$condition)
+
+fig2_df$condition_rev <- factor(
+  fig2_df$condition, 
+  levels = c("High risk\nalgorithm\n+ reasons",
+             "High risk\nmedical records\n+ reasons",
+             "High risk\nonly\n",
+             "Active\ncontrol\n",
+             "Passive\ncontrol\n"),
+  labels = c("High risk\nalgorithm\n+ reasons",
+             "High risk\nmedical records\n+ reasons",
+             "High risk\nonly",
+             "Active\ncontrol",
+             "Passive\ncontrol"
+  ))
+
+fig2_df$change <- fig2_df$perc - fig2_df$perc[which(fig2_df$condition == "Passive\ncontrol\n")]
+baseline <- fig2_df$percentage[which(fig2_df$condition == "Passive\ncontrol\n")] 
+
+fig2_df$perc_change <- paste0(format(round(fig2_df$change,1),nsmall = 1),"%")
+
+fig2_df$perc_change[which(fig2_df$condition == "Passive\ncontrol\n")] <- ""
+
+fig2 <- fig2_df %>%
+  ggplot(aes(y = condition_rev, x = change, color = condition)) +
+  geom_vline(xintercept = 0,linetype = "dashed", linewidth = .2) +
+  geom_point(size = 1.5) +
+  geom_errorbar(xmin = fig2_df$change - fig2_df$perc_ci ,
+                xmax = fig2_df$change + fig2_df$perc_ci, 
+                width = .2, linewidth = .25) + 
+  geom_text(
+    aes(y = 2.6, x = 0,
+        label = paste0("Passive control: ", baseline," vaccinated")),
+    size = 2.5, angle = 90, nudge_x = -.2, color = "black", fontface = "plain") + 
+  theme_medial() +
+  theme(axis.text.y = element_text(size = 7, color = "black"),
+        legend.position = "none") + 
+  labs(y = element_blank(), 
+       x = "Percentage point difference in vaccination\nvs. passive control")+
+  scale_color_manual(values = c("grey57",
+                                "#414141",
+                                "#0093D4",
+                                "#1DB7B9",
+                                "#E8A800"))+
+  scale_x_continuous(limits = c(-1,5.5),
+                     breaks = seq(-1,5,1), 
+                     labels = paste0(seq(-1,5,1),"%")) + 
+  geom_signif(y_position = 3, 
+              xmin = 4, 
+              xmax = 5,
+              annotation = c(""),
+              tip_length = c(.08,.3),
+              textsize = 6, vjust = .3, 
+              color = "black", size = .2)+
+  geom_signif(y_position = 4.3,
+              xmin = 1, 
+              xmax = 3,
+              annotation = c(""), 
+              tip_length = 0, 
+              color = "black", size = .2) +
+  geom_signif(y_position = 4.6, 
+              xmin = 2.4, 
+              xmax = 4,
+              annotation = c(""),
+              tip_length = c(.055,.26),
+              textsize = 6, vjust = .25, color = "black", size = .2) +
+  geom_signif(y_position = 5, 
+              xmin = 5, 
+              xmax = 1.6,
+              annotation = c(""),
+              tip_length = c(.33,.135),
+              textsize = 6, vjust = .3, color = "black", size = .2) +
+  geom_text(aes(label = perc_change), vjust = -.8, size = 2.5) +
+  geom_text(aes(x = 3.1, y = 4.5, label = "*"), color = "black", size = 2.5)+
+  geom_text(aes(x = 4.75, y = 3.2, label = "~"), color = "black", size = 2.5)+
+  geom_text(aes(x = 5.2, y = 3.7, label = "***"), color = "black", size = 2.5)
+
+
+fig2
+
+#ggsave(filename = "pub_figures/fig2.pdf", plot = fig2, 
+#       width = 88, height = 70, units = "mm")
+
+
+```
+
+## define baseline for all the other plots based on the overall baseline
+```{r}
+
+baseline_prop <- fig2_df$prop[which(fig2_df$condition == "Passive\ncontrol\n")]
+
+```
+
+## primary analysis
+### question 1
+Does informing patients that they are at high risk for flu and flu-related complications increase the likelihood that they will get vaccinated?
+
+#### 1a
+```{r}
+
+#versions that received high-risk messages
+risk_messages <- c("unspecified","medrec","algorithm")
+
+#binary variable - high risk vs. baseline
+analysis_data$risk_messages <- ifelse(
+  analysis_data$algo_condition %in% 
+    risk_messages, 1, 0)
+
+#making sure 0 is nocontact or contact control
+addmargins(table(analysis_data$algo_condition,analysis_data$risk_messages))
+
+#1a is high risk vs. contact control, excluding no contact
+analysis1a <- lm(vaccinated ~ risk_messages, data = analysis_data, 
+                 subset = algo_condition != "nocontact")
+summary(analysis1a)
+
+tab_model(analysis1a, show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "Analysis 1a: High Risk vs. Contact Control",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+analysis_data %>%
+  subset(algo_condition != "nocontact") %>%
+  group_by(risk_messages) %>%
+  summarize(meanvax = mean(vaccinated))
+
+analysis_data %>%
+  subset(algo_condition != "nocontact") %>%
+  group_by(risk_messages) %>%
+  tally()
+
+#robustness check - robust SEs
+summ(analysis1a, robust = "HC1", confint = TRUE, digits = 3)
+
+
+```
+
+#### 1b
+```{r}
+
+#1b is high risk vs. no-contact control, excluding contact control
+analysis1b <- lm(vaccinated ~ risk_messages, data = analysis_data, 
+                 subset = algo_condition != "control")
+summary(analysis1b)
+
+tab_model(analysis1b, show.stat = TRUE, show.df = TRUE, digits = 3, 
+          title = "Analysis 1b: High Risk vs. No-Contact Control",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+
+analysis_data %>%
+  subset(algo_condition != "control") %>%
+  group_by(risk_messages) %>%
+  summarize(meanvax = mean(vaccinated))
+
+
+#robustness check - robust SEs
+summ(analysis1b, robust = "HC1", confint = TRUE, digits = 3)
+
+  
+```
+
+
+### question 2
+Are flu shot messages more effective when they include reasons why (i.e., a medical records review or AI/ML-based review, along with personalized contributing risk factors) patients were designated as high risk for flu and flu-related complications?
+```{r}
+
+#list the conditions with reasons
+reasons <- c("medrec","algorithm")
+
+
+# make "reasons" variable
+analysis_data$reasons <- ifelse(analysis_data$algo_condition %in% 
+                                    reasons, 1, 0)
+
+
+#analysis 2 is only comparing reasons arms to unspecified, so removing both 
+#control groups from the analysis
+analysis2 <- lm(vaccinated ~ reasons, data = analysis_data, 
+                subset = !algo_condition %in% c("nocontact","control"))
+summary(analysis2)
+
+tab_model(analysis2, show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "Analysis 2: Reasons vs. No Reasons",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+analysis_data %>%
+  subset(!algo_condition %in% c("nocontact","control")) %>%
+  group_by(reasons) %>%
+  summarize(meanvax = mean(vaccinated))
+
+analysis_data %>%
+  subset(!algo_condition %in% c("nocontact","control")) %>%
+  group_by(reasons) %>%
+  tally()
+
+
+```
+
+
+### question 3
+Do messages encouraging flu shots increase flu vaccination rates?
+```{r}
+
+#making another binary variable with only contact control = 1
+analysis_data$contactcontrol <- as.factor(ifelse(
+  analysis_data$algo_condition == "control", 1, 0))
+
+
+#including only contact and no-contact control in this analysis
+analysis3 <- lm(vaccinated ~ contactcontrol, data = analysis_data, 
+                subset = algo_condition %in% c("nocontact","control"))
+summary(analysis3)
+
+tab_model(analysis3, show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "Analysis 3: Contact Control vs. No-Contact Control",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+#robustness check w/robust SEs
+summ(analysis3, robust = "HC1", confint = TRUE, digits = 3)
+
+
+```
+
+#### does it matter if you give one or three reasons?
+#### condition x number of reasons interaction
+```{r}
+
+#algo x reasons interaction
+algoXreasons <- lm(vaccinated ~ algo_condition * num_reasons, 
+                   data = analysis_data,
+                   subset = algo_condition %in% c("medrec","algorithm"))
+
+summary(algoXreasons)
+
+tab_model(algoXreasons,show.stat = TRUE, show.df = TRUE, digits = 3,
+          col.order  = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+
+```
+
+#### plot number of reasons by condition
+```{r}
+analysis_data$num_reasons_2 <- ifelse(
+  analysis_data$algo_condition == "unspecified", "0reasons",
+  as.character(analysis_data$num_reasons)) 
+
+
+table(analysis_data$num_reasons_2, analysis_data$num_reasons, useNA = "always")
+
+analysis_data$num_reasons_2 <- str_replace(analysis_data$num_reasons_2,
+                                           "reason", " Reason")
+
+
+reasons_plot <- analysis_data %>%
+  subset(!is.na(num_reasons_2)) %>%
+  group_by(algo_condition_plot, num_reasons_2, vaccinated) %>%
+  summarize(n = n()) %>%
+  pivot_wider(names_from = "vaccinated", 
+              values_from = "n", 
+              names_prefix = "vaccinated_") %>%
+  mutate(total_n = vaccinated_0 + vaccinated_1, 
+         prop_vaxxed = vaccinated_1/total_n,
+         perc = prop_vaxxed * 100,
+         se = sep(prop_vaxxed, total_n),
+         ci = se * 1.96,
+         perc_se = se * 100, 
+         perc_ci = ci * 100,
+         percentage = paste0(round(perc, 1),"%"))
+
+reasons_plot$condition_rev <- fct_rev(reasons_plot$algo_condition_plot)
+
+reasons_plot$perc_change <- (reasons_plot$prop_vaxxed - baseline_prop) * 100
+
+reasons_plot$change <- reasons_plot$perc - (baseline_prop *100)
+
+reasons_plot$perc_change <- paste0(format(round(reasons_plot$change,1),nsmall = 1),"%")
+
+
+reasons_plot$condition_rev2 <- factor(
+  reasons_plot$condition_rev,
+  levels = c("High risk\nalgorithm\n+ reasons","High risk\nmedical records\n+ reasons","High risk\nonly\n","Active\ncontrol\n","Passive\ncontrol\n"),
+  labels = c("High risk\nalgorithm\n+ reasons","High risk\nmedical records\n+ reasons","High risk\nonly","Active control","Passive control"))
+reasons_plot$condition_rev2 <- droplevels(reasons_plot$condition_rev2)
+reasons_plot$condition_rev2 <- fct_rev(reasons_plot$condition_rev2)
+
+
+reasons_plot$num_reasons_2 <- factor(reasons_plot$num_reasons_2, levels = c("3 Reasons","1 Reason","0 Reasons")) 
+reasons_plot$baseline_lab2 <- ifelse(
+  reasons_plot$condition_rev2 == "High risk\nmedical records\n+ reasons", paste0("Passive control:<br>", baseline," vaccinated"),"")
+
+```
+
+###### fig 3
+```{r}
+
+
+fig3 <- reasons_plot %>%
+  ggplot(aes(x = change, 
+             y = num_reasons_2, color = condition_rev2)) +
+  facet_grid(condition_rev2~., 
+             scales = "free", space = "free", switch= "both") +
+  geom_vline(xintercept = 0,linetype = "dashed", linewidth = .2) +
+  geom_errorbar(aes(xmin=change-perc_ci, xmax=change+perc_ci),
+                width=.2, position=position_dodge(.8), linewidth = .2) +
+  geom_point(size = 1.5, position=position_dodge(.8)) +
+  theme_medial() +  
+  theme(axis.text.y = element_text(size = 5, color = "black"),
+        axis.title.y = element_blank(),
+        strip.text = element_text(size = 7, color = "black"),
+        legend.position = "none",
+        panel.spacing = unit(0, "cm"),
+        plot.margin = margin(5,5,5,5),
+        strip.placement = "outside",
+        strip.background = element_rect(fill = "white",
+                                        color = "black", 
+                                        linewidth = .5)) + 
+  labs(x = "Percentage point difference in vaccination\nvs. passive control") +
+  scale_x_continuous(limits = c(-.5,5.5),
+                     breaks = seq(0,5,1), 
+                     labels = paste0(seq(0,5,1),"%")) + 
+  coord_cartesian(clip = "off") +
+  scale_color_manual(values = c("#0093D4", "#1DB7B9","#E8A800"),
+                     guide = guide_legend(reverse = TRUE))+
+  geom_richtext(aes(x = 0, y = 0,
+                    label = as.character(baseline_lab2)),
+                size = 1.9, angle = 90,  color = "black", hjust = 0, vjust = .1, 
+                nudge_y = 0, lineheight = 1,
+                label.color = NA, fill = NA) + 
+  geom_text(aes(label=perc_change),
+            position=position_dodge(width=.8), vjust = -.7, size = 2.5)
+
+fig3
+
+
+
+#ggsave(filename = "pub_figures/fig3.pdf", plot = fig3, 
+#       width = 88, height = 70, units = "mm")
+
+
+```
+### question 4
+Among messages that mention patients’ risk statuses, is it most effective to a) give patients no information about how their risk status was determined (group 3), b) tell patients their high-risk designation was based on a review of their medical records with personalized reasons for their risk determination (group 4), or c) tell patients their high-risk designation was based on a computer algorithm review of their records with personalized reasons for their risk determination (group 5)?
+```{r}
+
+#make a new variable called high_risk_cond that is the same as algo_cond but it's only populated for the high risk conditions
+analysis_data$high_risk_cond <- ifelse(
+  !analysis_data$algo_condition %in% 
+    c("nocontact","control"), analysis_data$algo_condition, NA)
+
+table(analysis_data[,c("algo_condition","high_risk_cond")], useNA = "always")
+
+#name the levels
+analysis_data$high_risk_cond <- factor(
+  analysis_data$high_risk_cond,
+  levels = c(3,4,5),
+  labels = c("unspecified","medrec","algorithm"))
+
+table(analysis_data[,c("algo_condition","high_risk_cond")], useNA = "always")
+
+levels(analysis_data$high_risk_cond)
+
+#regression
+analysis4 <- lm(vaccinated ~ high_risk_cond, data = analysis_data, 
+                subset = !algo_condition %in% c("nocontact","control"))
+summary(analysis4)
+
+tab_model(analysis4, show.stat = TRUE, show.df = TRUE, 
+          title = "Analysis 4: Comparing High-Risk Messages")
+
+pairs(emmeans(analysis4, "high_risk_cond"), infer = TRUE)
+
+
+
+a4glm <- glm(vaccinated~high_risk_cond, data = analysis_data,
+    subset = !algo_condition %in% c("nocontact","control"), family = "binomial")
+
+summary(a4glm)
+
+tab_model(a4glm)
+
+```
+
+
+
+# Exploratory analyses
+## risk level by algo condition
+#### t-tests instead of interaction
+```{r}
+
+analysis1a_top3 <- lm(vaccinated ~ risk_messages, 
+                      data = analysis_data, 
+                      subset = (!algo_condition =="nocontact" & 
+                                  risk_condition == "top3"))
+
+summary(analysis1a_top3)
+
+tab_model(analysis1a_top3, show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "top3",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+analysis1a_top10 <- lm(vaccinated ~ risk_messages, 
+                      data = analysis_data, 
+                      subset = (!algo_condition =="nocontact" & 
+                                  risk_condition == "top10"))
+
+summary(analysis1a_top10)
+
+tab_model(analysis1a_top10, show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "top10",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+```
+
+
+### arm + risk level plot
+```{r}
+
+risk_level_plot_2 <- make_proportions_group(
+  analysis_data,"vaccinated",condition_col = "risk_condition",
+  condition_x = "algo_condition_plot", ndecimals = 1)
+
+
+
+risk_level_plot_2$risk_messages_controls <- ifelse(
+  risk_level_plot_2$condition_x == "Passive\ncontrol\n","No message", 
+  ifelse(
+    risk_level_plot_2$condition_x == "Active\ncontrol\n","No risk info\nin message",
+    ifelse(
+      risk_level_plot_2$condition_col == "top3", 
+      "\"you are in the\ntop 3% of risk\"",
+       "\"you are in the\ntop 10% of risk\""
+    )))
+
+#reformat factors
+risk_level_plot_2$risk_messages_controls <- factor(
+  risk_level_plot_2$risk_messages_controls, 
+   levels = c("No message",
+     "No risk info\nin message",
+     "\"you are in the\ntop 3% of risk\"",
+     "\"you are in the\ntop 10% of risk\""))
+
+table(risk_level_plot_2$condition_x, risk_level_plot_2$risk_messages_controls, useNA = "always")
+table(risk_level_plot_2$condition_col, risk_level_plot_2$risk_messages_controls, useNA = "always")
+
+
+risk_level_plot_2$condition_rev <- fct_rev(risk_level_plot_2$condition_x)
+
+risk_level_plot_2$condition_rev <- factor(
+  risk_level_plot_2$condition_rev, 
+  levels = c("High risk\nalgorithm\n+ reasons",
+             "High risk\nmedical records\n+ reasons",
+             "High risk\nonly\n",
+             "Active\ncontrol\n","Passive\ncontrol\n"),
+  labels = c("High risk\nalgorithm\n+ reasons",
+             "High risk\nmedical records\n+ reasons",
+             "High risk\nonly",
+             "Active\ncontrol","Passive\ncontrol"))
+
+
+risk_level_plot_2$perc_change <- (risk_level_plot_2$prop - baseline_prop) * 100
+
+risk_level_plot_2$change <- risk_level_plot_2$perc - (baseline_prop *100)
+
+risk_level_plot_2$perc_change <- paste0(format(round(risk_level_plot_2$change,1),nsmall = 1),"%")
+
+
+
+risk_level_plot_2$condition_col_rev <- factor(
+  risk_level_plot_2$condition_col, 
+  levels = c("top10","top3"), labels = c("Top 4-10%","Top 3%"))
+
+risk_level_plot_2$condition_rev2 <- factor(
+  risk_level_plot_2$condition_rev,
+  levels = c("High risk\nalgorithm\n+ reasons",
+             "High risk\nmedical records\n+ reasons",
+             "High risk\nonly",
+             "Active\ncontrol",
+             "Passive\ncontrol"),
+  labels = c("High risk algorithm\n+ reasons",
+             "High risk medical records\n+ reasons",
+             "High risk only",
+             "Active control",
+             "Passive control"))
+
+risk_level_plot_2$condition_col_rev2 <- factor(
+  risk_level_plot_2$condition_col, 
+  levels = c("top3","top10"), labels = c("Top 3% of risk","Top 4-10% of risk"))
+
+risk_level_plot_2$risk_msg <- factor(
+  risk_level_plot_2$condition_col, 
+  levels = c("top3","top10"), 
+  labels =  c("\"you are in the<br>**top 3% of risk**\"",
+            "\"you are in the<br>**top 10% of risk**\""))
+
+
+risk_level_plot_2$baseline_lab <- ifelse(
+  risk_level_plot_2$condition_col == "top3",
+  paste0("Overall passive control:<br>", baseline," vaccinated"),"")
+
+```
+
+##### extended data fig 3 
+```{r}
+
+
+fig3_ext <- risk_level_plot_2 %>%
+  ggplot(aes(x = change, 
+             y = condition_rev2, color = condition_rev2)) +
+  facet_wrap(~condition_col_rev2, nrow = 2, strip.position = "left") +
+  geom_vline(xintercept = 0,linetype = "dashed", linewidth = .2) +
+  geom_errorbar(aes(xmin=change-perc_ci, xmax=change+perc_ci),
+                width=.2, position=position_dodge(.8), linewidth = .2) +
+  geom_point(size = 1.5,
+             position=position_dodge(.8)) +
+  theme_medial() +  
+  theme(axis.text.y = element_text(size = 5, color = "black"),
+        axis.title.y = element_blank(),
+        strip.text = element_text(size = 7, color = "black"),
+        legend.position = "none",
+        panel.spacing = unit(0, "cm"),
+        plot.margin = margin(10,10,10,10),
+        strip.placement = "outside",
+        strip.background = element_rect(fill = "white",
+                                        color = "black", 
+                                        linewidth = .5)) + 
+  labs(x = "Percentage point difference in vaccination\nvs. passive control",
+       color = "Risk info\nin message",
+       fill = "Condition") +
+  scale_x_continuous(breaks = seq(-2,8,2), 
+                     labels = paste0(seq(-2,8,2),"%")) + 
+  coord_cartesian(clip = "off") +
+  scale_color_manual(values = c("#E8A800", 
+                                "#1DB7B9",
+                                "#0093D4",
+                                "#414141",
+                                "grey57"))+
+  geom_richtext(aes(y = 1, x = 0,
+                    label = as.character(baseline_lab)),
+                size = 1.9, angle = 90,  color = "black", hjust = 0, vjust = 0, 
+                lineheight = 1,
+                label.color = NA, fill = NA) + 
+  geom_text(aes(label=perc_change),
+            position=position_dodge(width=.8), vjust = -.7, size = 2.5)+
+  geom_signif(xmin = 1, 
+              xmax = 3,
+              y_position = 7.2,
+              annotations = "",
+              color = "black",
+              size = .2) +
+  geom_richtext(aes(label = as.character(risk_msg), y = 2, x = 7.8),
+                color = "black", angle = 270, size = 1.9, lineheight = 1,
+                label.color = NA, fill = NA)
+
+fig3_ext
+
+
+#ggsave(filename = "pub_figures/fig3ext.tiff", plot = fig3_ext, device = "tiff", 
+#       width = 88, height = 70, units = "mm")
+
+```
+
+
+### risk level * messages interaction 
+```{r}
+
+#1a is high risk vs. contact control, excluding no contact
+analysis1a_risk <- lm(vaccinated ~ risk_messages * risk_condition, 
+                      data = analysis_data, 
+                 subset = algo_condition != "nocontact")
+summary(analysis1a_risk)
+
+tab_model(analysis1a_risk,  show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "High Risk vs. Active Control * Risk condition",
+           col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+emm <- emmeans(analysis1a_risk, ~ risk_messages | risk_condition)
+contrasts <- contrast(emm, method = "pairwise", infer = TRUE)
+summary(contrasts)
+
+#1b is high risk vs. no-contact control, excluding contact control
+analysis1b_risk <- lm(vaccinated ~ risk_messages * risk_condition, 
+                      data = analysis_data, 
+                 subset = algo_condition != "control")
+summary(analysis1b_risk)
+
+tab_model(analysis1b_risk,  show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "High Risk vs. No-Contact Control * Risk condition",
+           col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+```
+
+
+# Analyses in the supplement/web appendix
+
+
+## time
+#### Plot prep
+```{r}
+
+fulldata_algoXday <- timedata %>%
+  subset(wkend == "weekday" & holiday == 0)
+
+```
+
+#### extended data fig 2
+```{r}
+#plot
+fig2ext <- ggplot(fulldata_algoXday, 
+                  aes(x = buis_day_from_letter, 
+                      y = vaccinated, group = algo_condition)) + 
+  geom_vline(xintercept=0,linetype = "dashed", linewidth = .2) +
+  geom_vline(xintercept=12,linetype = "dashed", linewidth = .2) +
+  geom_vline(xintercept=23,linetype = "dashed", linewidth = .2) +
+  geom_vline(xintercept=29,linetype = "dashed", linewidth = .2) +
+  stat_smooth(
+    data=subset(fulldata_algoXday, buis_day_from_letter >= 0),
+    aes(x = buis_day_from_letter, y = vaccinated, color = algo_condition),
+    method = "loess", formula = y ~ x, size = 1, se = FALSE, alpha = .7, linewidth = .25) +
+  stat_smooth(
+    data = subset(fulldata_algoXday, buis_day_from_letter < 0),
+    aes(x = buis_day_from_letter, y = vaccinated, color = algo_condition),
+    method = "loess", formula = y ~ x, size = 1, se = FALSE, alpha = .7, linewidth = .25) +
+  geom_point(aes(color = algo_condition), size = .5, alpha = .8) +
+  coord_cartesian(clip = "off") +
+  labs(x = "Business days from intervention start", 
+       y = "Number of patients vaccinated") +
+  theme_medial() +
+  theme(legend.title = element_blank(),
+        legend.margin = margin(0,-5,-15,0),
+        legend.key.height = unit(.5,"cm"),
+        legend.position = "right",
+        legend.justification = c(1, 0),  
+        plot.margin = margin(30, 20, 5, 5),
+        legend.background = element_rect(fill = NA)) + 
+  scale_color_manual(values = c(c("grey57",
+                                  "#414141",
+                                  "#0093D4",
+                                  "#1DB7B9",
+                                  "#E8A800")))  +
+  annotate("text", x = -15, y = 80, label = "Letter", size = 2) +
+  geom_segment(x = -9, xend = -1, y = 80, yend = 80, 
+               arrow = arrow(length = unit(0.1, "cm")), linewidth = .2) +
+  annotate("text", x = -15, y = 50, label = "Portal", size = 2) +
+  geom_segment(x = -9, xend = 11, y = 50, yend = 50, 
+               arrow = arrow(length = unit(0.1, "cm")), linewidth = .2) +
+  annotate("text", x = -15, y = 30, label = "Early\nSMS", size = 2) +
+  geom_segment(x = -9, xend = 22, y = 30, yend = 30, 
+               arrow = arrow(length = unit(0.1, "cm")), linewidth = .2) +
+  annotate("text", x = -15, y = 15, label = "Late\nSMS", size = 2) +
+  geom_segment(x = -9, xend = 28, y = 15, yend = 15, 
+               arrow = arrow(length = unit(0.1, "cm")), linewidth = .2) 
+
+fig2ext
+
+
+fig2extv2 <- fig2ext + 
+  geom_magnify(
+    from = c(xmin = 0, xmax = 20, ymin = 55, ymax = 100),
+    to = c(xmin = 60, xmax = 105, ymin = 45, ymax = 120), linewidth = .2)
+
+fig2extv2
+
+
+#ggsave(filename = "pub_figures/fig2ext.tiff", plot = fig2extv2, device = "tiff",
+#       width = 88, height = 70, units = "mm")
+
+```
+
+
+#### shot timing analysis
+```{r}
+timedata2 <- timedata %>% 
+  subset(time>=0) %>%
+  mutate(informed = ifelse(algo_condition == "Passive control", 0, 1)) %>%
+  select(-c(vaccinated_analysis_df_0, vaccinated))
+timedata3 <- timedata2[rep(row.names(timedata2), timedata2$vaccinated_analysis_df_1),]
+
+
+table(timedata3$informed, useNA = "always")
+
+summary(lm(time ~ informed, data = timedata3))
+
+tab_model(lm(time ~ informed, data = timedata3), show.stat = TRUE, show.df = TRUE,
+          title = "decile regression: high risk vs. passive control",
+          col.order = c("est", "ci", 
+                        "stat","df.error",  "p"),
+          digits = 3)
+
+
+```
+
+## factor for combined active/passive control analyses which are all in the supplement
+```{r}
+
+
+analysis_data$risk_messages_controls_factor <- ifelse(
+  analysis_data$algo_condition == "nocontact", "Passive control", 
+  ifelse(analysis_data$algo_condition == "control", "Active control", "High risk"))
+  
+
+analysis_data$risk_messages_controls_factor_2 <-  factor(
+  analysis_data$risk_messages_controls_factor,
+  levels = c("High risk","Passive control","Active control"))
+
+summary.factor(analysis_data$risk_messages_controls_factor)
+
+```
+
+
+## Race
+```{r}
+
+analysis_data$race <- factor(
+  analysis_data$race, 
+  levels = c("American Indian Or Alaska Native","Asian",
+             "Native Hawaiian Or Other Pacific Islander",
+             "Black Or African American","White",
+             "More Than One Race","Unknown"))
+
+
+analysis_data$vaccinated_str <- factor(
+  analysis_data$vaccinated, 
+  levels = c(0,1),
+  labels = c("not_vaccinated","vaccinated"))
+
+
+analysis_data %>%
+  group_by(race, algo_condition_plot, vaccinated_str) %>%
+  tally() %>%
+  pivot_wider(id_cols = c(race, algo_condition_plot), 
+              names_from = vaccinated_str, values_from = n) %>%
+  mutate(total_n = sum(not_vaccinated, vaccinated, na.rm = TRUE),
+         prop_vaccinated = round(vaccinated/total_n, 3)) %>%
+  #replace_na(list(total_n = 0, prop_vaccinated = 0))%>%
+  mutate(value = paste0(prop_vaccinated, "<br> n = ", total_n)) %>%
+  select(race, algo_condition_plot, value) %>%
+  pivot_wider(id_cols = race, names_from = algo_condition_plot, 
+              values_from = value) %>%
+  #replace_na(list(`High risk\nmedical records` = "0<br> n = 0")) %>%
+  rename(Race = race) %>%
+  formattable()
+
+
+```
+
+
+## Ethnicity
+```{r}
+
+analysis_data %>%
+  group_by(ethnicity, algo_condition_plot, vaccinated_str) %>%
+  tally() %>%
+  pivot_wider(id_cols = c(ethnicity, algo_condition_plot), 
+              names_from = vaccinated_str, values_from = n) %>%
+  mutate(total_n = sum(not_vaccinated, vaccinated),
+         prop_vaccinated = round(vaccinated/total_n, 3),
+         value = paste0(prop_vaccinated, "<br> n = ", total_n)) %>%
+  select(ethnicity, algo_condition_plot, value) %>%
+  pivot_wider(id_cols = ethnicity, names_from = algo_condition_plot, 
+              values_from = value) %>%
+  rename(Ethnicity = ethnicity) %>%
+  formattable()
+
+
+
+```
+
+
+### analysis: White vs. everyone else by intervention
+```{r}
+
+
+
+analysis_data$race_eth <- ifelse(analysis_data$race == "White" & analysis_data$ethnicity == "Not Hispanic Or Latino", "white_non_hispanic","other")
+
+addmargins(table(analysis_data$race_eth, useNA = "ifany"))
+
+analysis_data %>%
+  subset(!algo_condition == "nocontact") %>%
+  group_by(race_eth) %>%
+  tally()
+
+
+summary(race_eth_mod_1c <- lm(vaccinated~risk_messages_controls_factor_2*race_eth, data = analysis_data))
+tab_model(race_eth_mod_1c,  show.stat = TRUE, show.df = TRUE, digits = 3,
+           col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+```
+
+## sex
+```{r}
+
+
+analysis_data %>%
+  group_by(sex, algo_condition_plot, vaccinated_str) %>%
+  tally() %>%
+  pivot_wider(id_cols = c(sex, algo_condition_plot), 
+              names_from = vaccinated_str, values_from = n) %>%
+  mutate(total_n = sum(not_vaccinated, vaccinated),
+         prop_vaccinated = round(vaccinated/total_n, 3),
+         value = paste0(prop_vaccinated, "<br> n = ", total_n)) %>%
+  select(sex, algo_condition_plot, value) %>%
+  pivot_wider(id_cols = sex, names_from = algo_condition_plot, 
+              values_from = value) %>%
+  rename(Sex = sex) %>%
+  formattable()
+
+
+lm1c_sex <- lm(vaccinated ~ risk_messages_controls_factor_2 * sex, 
+                         data = analysis_data)
+
+
+tab_model(lm1c_sex, show.stat = TRUE, show.df = TRUE,
+          col.order = c("est", "ci",  
+                        "stat", "df.error", "p"),
+          digits = 3)
+
+
+```
+
+## age
+```{r}
+
+summary.factor(analysis_data$age65plus)
+
+sum(analysis_data$age65plus=="65+") / nrow(analysis_data) 
+make_proportions(analysis_data,"vaccinated","age65plus")
+
+
+lm_age_1c <- lm(vaccinated ~ risk_messages_controls_factor_2*age65plus, data = analysis_data)
+
+
+tab_model(lm_age_1c, show.stat = TRUE, show.df = TRUE,
+          col.order = c("est", "ci",  
+                        "stat", "df.error", "p"),
+          digits = 3)
+
+
+age_props_test <- make_proportions_group(analysis_data,"vaccinated","age65plus","risk_messages_controls_factor",
+                              ndecimals = 1)
+
+bar_graph_groups(age_props_test, rescale = FALSE, 
+                 setcolors = c("grey57","#414141","#0093D4"),
+                 xlab = "Age group",
+                 ylab = "Percent vaccinated", legend_label = "Message condition")
+
+
+```
+
+### age bins
+```{r}
+
+analysis_data %>%
+  group_by(age_bin) %>%
+  tally()
+
+
+lm1_agebin <- lm(vaccinated ~ risk_messages_controls_factor_2 * age_bin, 
+                         data = analysis_data)
+
+
+tab_model(lm1_agebin, show.stat = TRUE, show.df = TRUE,
+          col.order = c("est", "ci",  
+                        "stat", "df.error", "p"),
+          digits = 3)
+
+
+age_props_test <- make_proportions_group(analysis_data,"vaccinated","age_bin",
+                                         "risk_messages_controls_factor_2",
+                              ndecimals = 1)
+
+age_props_test$condition_col <- factor(
+  age_props_test$condition_col,
+  levels = c("Passive control","Active control","High risk"))
+
+bar_graph_groups(age_props_test, rescale = FALSE, 
+                 setcolors = c("grey57","#414141","#0093D4"),
+                 xlab = "Age group",
+                 ylab = "Percent vaccinated", legend_label = "Message arm",
+                 include_caption = FALSE)
+
+```
+
+
+
+## age and sex
+```{r}
+
+lm1_agebysex <- lm(vaccinated ~ risk_messages_controls_factor_2 + age_bin * sex, 
+                         data = analysis_data)
+
+
+tab_model(lm1_agebysex, show.stat = TRUE, show.df = TRUE,
+          col.order = c("est", "ci",  
+                        "stat", "df.error", "p"),
+          digits = 3)
+
+
+age_sex_props <- make_proportions_group(
+  analysis_data,"vaccinated","age_bin","sex",
+                              ndecimals = 1)
+
+bar_graph_groups(age_sex_props, setcolors = c("lightgrey","darkgrey"),
+                 xlab = "Age bin", ylab = "Percent vaccinated",
+                 legend_label = "Sex", include_caption = FALSE, 
+                 vjust = 2.4)
+
+
+
+
+```
+
+
+
+## modalities
+### modalities eligibility at enrollment
+```{r}
+
+summary.factor(fulldata$modalities_orig)
+
+
+mods_tests_analysis_orig <- fulldata %>% 
+  group_by(algo_condition) %>% 
+  summarize(Letter = sum(modalities_orig == "Letter"),
+            LetterPortal = sum(modalities_orig == "Letter + portal"),
+            LetterSMS = sum(modalities_orig == "Letter + SMS"),
+            LetterPortalSMS = sum(modalities_orig == "Letter + portal + SMS"),
+            Portal = sum(modalities_orig == "Portal"),
+            SMS = sum(modalities_orig == "SMS"),
+            PortalSMS = sum(modalities_orig == "PortalSMS"),
+            n = n())
+
+prop.test(mods_tests_analysis_orig$Letter, mods_tests_analysis_orig$n)
+prop.test(mods_tests_analysis_orig$LetterPortal, mods_tests_analysis_orig$n)
+prop.test(mods_tests_analysis_orig$LetterSMS, mods_tests_analysis_orig$n)
+prop.test(mods_tests_analysis_orig$LetterPortalSMS, mods_tests_analysis_orig$n)
+
+
+fulldata %>%
+  group_by(algo_condition_plot) %>%
+  summarize(
+    `Letter Only` = paste0(
+      format(round(mean(modalities_orig == "Letter")*100,1),nsmall = 1),
+      "% (",sum(modalities_orig == "Letter"),")"),
+    `Letter+Portal` = paste0(
+      format(round(mean(modalities_orig == "Letter + portal")*100,1),nsmall = 1),
+      "% (",sum(modalities_orig == "Letter + portal"),")"),
+    `Letter+SMS` = paste0(
+      format(round(mean(modalities_orig == "Letter + SMS")*100,1),nsmall = 1),
+      "% (",sum(modalities_orig == "Letter + SMS"),")"),
+    `Letter+Portal+SMS` = paste0(
+      format(round(mean(modalities_orig == "Letter + portal + SMS")*100,1),nsmall = 1),
+      "% (",sum(modalities_orig == "Letter + portal + SMS"),")"),
+    `Portal Only` = paste0(
+      format(round(mean(modalities_orig == "Portal Only")*100,1),nsmall = 1),
+      "% (",sum(modalities_orig == "Portal"),")"),
+    `SMS Only` = paste0(
+      format(round(mean(modalities_orig == "SMS Only")*100,1),nsmall = 1),
+      "% (",sum(modalities_orig == "SMS"),")"),
+    `Portal+SMS` = paste0(
+      format(round(mean(modalities_orig == "Portal + SMS")*100,1),nsmall = 1),
+      "% (",sum(modalities_orig == "Portal + SMS"),")"),
+    `Total N` = n()
+    )%>%
+  t() %>% 
+  kbl(caption = "Study 2 enrolled") %>%
+  kable_classic(full_width = FALSE)
+
+
+
+```
+
+### modalities analysis data
+```{r}
+
+
+summary.factor(analysis_data$modalities)
+
+mods_tests_analysis <- analysis_data %>% 
+  group_by(algo_condition) %>% 
+  summarize(Letter = sum(modalities == "Letter"),
+            LetterPortal = sum(modalities == "Letter + portal"),
+            LetterSMS = sum(modalities == "Letter + SMS"),
+            LetterPortalSMS = sum(modalities == "Letter + portal + SMS"),
+            Portal = sum(modalities == "Portal"),
+            SMS = sum(modalities == "SMS"),
+            n = n())
+
+prop.test(mods_tests_analysis$Letter, mods_tests_analysis$n)
+prop.test(mods_tests_analysis$LetterPortal, mods_tests_analysis$n)
+prop.test(mods_tests_analysis$LetterSMS, mods_tests_analysis$n)
+prop.test(mods_tests_analysis$LetterPortalSMS, mods_tests_analysis$n)
+
+
+
+analysis_data %>%
+  group_by(algo_condition_plot) %>%
+  summarize(
+    `Letter Only` = paste0(
+      format(round(mean(modalities == "Letter")*100,1),nsmall = 1),
+      "% (",sum(modalities == "Letter"),")"),
+    `Letter+Portal` = paste0(
+      format(round(mean(modalities == "Letter + portal")*100,1),nsmall = 1),
+      "% (",sum(modalities == "Letter + portal"),")"),
+    `Letter+SMS` = paste0(
+      format(round(mean(modalities == "Letter + SMS")*100,1),nsmall = 1),
+      "% (",sum(modalities == "Letter + SMS"),")"),
+    `Letter+Portal+SMS` = paste0(
+      format(round(mean(modalities == "Letter + portal + SMS")*100,1),nsmall = 1),
+      "% (",sum(modalities == "Letter + portal + SMS"),")"),
+    `Portal Only` = paste0(
+      format(round(mean(modalities == "Portal Only")*100,1),nsmall = 1),
+      "% (",sum(modalities == "Portal"),")"),
+    `SMS Only` = paste0(
+      format(round(mean(modalities == "SMS Only")*100,1),nsmall = 1),
+      "% (",sum(modalities == "SMS"),")"),
+    `Portal+SMS` = paste0(
+      format(round(mean(modalities == "Portal + SMS")*100,1),nsmall = 1),
+      "% (",sum(modalities == "Portal + SMS"),")"),
+    `No modalities` = paste0(
+      format(round(mean(modalities == "no_modalities")*100,1),nsmall = 1),
+      "% (",sum(modalities == "no_modalities"),")"),
+    `Total N` = n()
+    )%>%
+  t() %>% 
+  kbl(caption = "Study 2 analysis sample") %>%
+  kable_classic(full_width = FALSE)
+
+
+```
+
+
+
+### run primary 1 without the patients who got nothing
+```{r}
+
+lm1a_rmnomods <- lm(vaccinated~risk_messages, data = analysis_data, 
+                   subset = !modalities %in% "no_modalities" & 
+                     !algo_condition == "nocontact")
+
+tab_model(lm1a_rmnomods, show.stat = TRUE, show.df = TRUE,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"),
+          digits = 3)
+
+
+lm1b_rmnomods <- lm(vaccinated~risk_messages, data = analysis_data, 
+                   subset = !modalities == "no_modalities" & !algo_condition == "control")
+
+tab_model(lm1b_rmnomods, show.stat = TRUE, show.df = TRUE,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"),
+          digits = 3)
+
+```
+
+### modalities analysis
+```{r}
+
+
+lm_modalities <- lm(
+  vaccinated ~ modalities, data = analysis_data,
+  subset = (!modalities %in% 
+    c("Portal","SMS","Portal + SMS","no_modalities") & 
+    !algo_condition == "nocontact"))
+
+summary(lm_modalities)
+
+
+analysis_data %>%
+  subset(!modalities %in% 
+    c("Portal","SMS","Portal + SMS","no_modalities")) %>%
+  group_by(modalities,algo_condition_plot) %>%
+  summarize(meanvax = mean(vaccinated), 
+            sevax = sep(meanvax, n()),
+            perc_vax = meanvax *100,
+            ci_perc = sevax * 1.96 * 100) %>%
+  ggplot(aes(x = modalities, y = perc_vax, 
+             fill = algo_condition_plot, group = algo_condition_plot)) +
+  geom_bar(position="dodge", stat = "identity") +
+  geom_errorbar(aes(ymin=perc_vax-ci_perc, ymax=perc_vax+ci_perc),
+                width=.2, position=position_dodge(.9))+
+  theme_classic() + 
+  theme(axis.text.x=element_text(size=12),
+          axis.text.y=element_text(size=12),
+          axis.title.y=element_text(size=15,color = "grey30")) +
+  scale_fill_manual(values = c("grey57","#414141","#0093D4","#1DB7B9","#E8A800")) +
+  labs(x = "Modalities",y = "Percent vaccinated", fill = "Condition") +
+  coord_cartesian(ylim = c(10,50))
+
+
+
+```
+
+### main analysis controlling for modalities
+```{r}
+lm_modalities_2 <- lm(
+  vaccinated ~ modalities+risk_messages_controls_factor_2, data = analysis_data,
+  subset = (!modalities %in% 
+    c("Portal","SMS","Portal + SMS","no_modalities")))
+
+
+tab_model(lm_modalities_2, show.stat = TRUE, 
+          show.df = TRUE, digits = 3,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+```
+
+### modalities plot
+```{r}
+analysis_data %>%
+  subset(!modalities %in% 
+    c("Portal","SMS","Portal + SMS","no_modalities")) %>%
+  group_by(modalities,algo_condition_plot) %>%
+  summarize(meanvax = mean(vaccinated), 
+            sevax = sep(meanvax, n()),
+            perc_vax = meanvax *100,
+            ci_perc = sevax * 1.96 * 100) %>%
+  ggplot(aes(x = modalities, y = perc_vax, 
+             fill = algo_condition_plot, group = algo_condition_plot)) +
+  geom_bar(position="dodge", stat = "identity") +
+  geom_errorbar(aes(ymin=perc_vax-ci_perc, ymax=perc_vax+ci_perc),
+                width=.2, position=position_dodge(.9))+
+  theme_classic() + 
+  theme(axis.text.x=element_text(size=12),
+          axis.text.y=element_text(size=12),
+          axis.title.y=element_text(size=15,color = "grey30")) +
+  scale_fill_manual(values = c("grey57","#414141","#0093D4","#1DB7B9","#E8A800")) +
+  labs(x = "Modalities",y = "Percent vaccinated", fill = "Condition") +
+  coord_cartesian(ylim = c(10,50))
+
+
+```
+
+## SMS timing
+### setup
+```{r}
+
+#make sure this doesn't include nocontact
+table(analysis_data$sms_date_bin,analysis_data$algo_condition, useNA = "always")
+
+#sample sizes for table caption
+addmargins(table(analysis_data$sms_date_bin,analysis_data$algo_condition))
+
+
+```
+
+### regressions
+```{r}
+
+#regression including everyone who was supposed to get a text
+analysis_sms_timing <- lm(vaccinated ~ sms_date_bin*algo_condition, data = analysis_data)
+
+
+tab_model(analysis_sms_timing, show.stat = TRUE, show.df = TRUE, digits = 3,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+```
+
+### shot timing + SMS timing
+```{r}
+
+# expand timing data
+sms_timing_data <-  timedata %>% 
+  subset(time>=0) %>%
+  select(c(time, algo_condition, sms_early, sms_late)) %>%
+  pivot_longer(cols = c(sms_early, sms_late), names_to = "sms_date_bin", values_to = "n_vaccinated") %>%
+  subset(!is.na(n_vaccinated))
+sms_timing_data2 <- sms_timing_data[rep(row.names(sms_timing_data), sms_timing_data$n_vaccinated),]
+
+
+
+#using the number of days from the start of the intervention as a DV, with only vaccinated patients included
+sms_vaccination_timing <- lm(time ~ sms_date_bin*algo_condition, data = sms_timing_data2)
+
+tab_model(sms_vaccination_timing, show.stat = TRUE, show.df = TRUE, digits = 3,
+          col.order = c("est", "ci", "df.error",
+                        "stat", "p"))
+
+
+addmargins(table(sms_timing_data2$algo_condition,sms_timing_data2$sms_date_bin))
+
+```
+
+## removing patients who shared an address
+```{r}
+
+anal_data_addresses_nodups <- subset(analysis_data, dup_address == 0)
+
+
+
+#1a is high risk vs. contact control, excluding no contact
+analysis1a_nd <- lm(vaccinated ~ risk_messages, data = anal_data_addresses_nodups, 
+                 subset = algo_condition != "nocontact")
+summary(analysis1a_nd)
+
+tab_model(analysis1a_nd, show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "Analysis 1a: High Risk vs. Contact Control, no duplicate addresses",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+
+
+#1a is high risk vs. contact control, excluding no contact
+analysis1b_nd <- lm(vaccinated ~ risk_messages, data = anal_data_addresses_nodups, 
+                 subset = algo_condition != "control")
+summary(analysis1b_nd)
+
+tab_model(analysis1b_nd, show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "Analysis 1a: High Risk vs. passive Control, no duplicate addresses",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+```
+
+
+## intent to treat
+```{r}
+
+itt_sample <- subset(fulldata, is.na(exclude_reason) | !exclude_reason == "contra")
+
+#binary variable - high risk vs. baseline
+itt_sample$risk_messages <- ifelse(
+  itt_sample$algo_condition %in% 
+    risk_messages, 1, 0)
+
+#1a is high risk vs. contact control, excluding no contact
+analysis1a_itt <- lm(vaccinated ~ risk_messages, data = itt_sample, 
+                 subset = algo_condition != "nocontact")
+summary(analysis1a_itt)
+
+tab_model(analysis1a_itt, show.stat = TRUE, show.df = TRUE, digits = 3,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+#1b is high risk vs. passive control, excluding active control
+analysis1b_itt <- lm(vaccinated ~ risk_messages, data = itt_sample, 
+                 subset = algo_condition != "control")
+summary(analysis1b_itt)
+
+tab_model(analysis1b_itt, show.stat = TRUE, show.df = TRUE, digits = 3,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+```
+
+
+### high risk differences
+```{r}
+lm2_itt <- lm(vaccinated~algo_condition, data = itt_sample, 
+              subset = risk_messages == 1)
+summary(lm2_itt)
+
+tab_model(lm2_itt, show.stat = TRUE, show.df = TRUE,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"),
+          digits = 3)
+
+pairs(emmeans(lm2_itt, "algo_condition"), infer = TRUE)
+
+x <- data.frame(summary(pairs(emmeans(lm2_itt, "algo_condition")), infer = TRUE))
+
+paste0(
+  x$contrast,": b = ",round(x$estimate, 3), 
+  ", [95% CI: ",round(x$lower.CL,3),", ",round(x$upper.CL,3),
+  "], t(",x$df,") = ",round(x$t.ratio,3), ", p = ", round(x$p.value,3))
+
+
+```
+
+
+## Geisinger PCP analysis
+```{r}
+
+
+
+#1a is high risk vs. contact control, excluding no contact
+analysis1a_pcp <- lm(vaccinated ~ risk_messages + geis_pcp, data = analysis_data, 
+                 subset = algo_condition != "nocontact")
+summary(analysis1a_pcp)
+
+tab_model(analysis1a_pcp, show.stat = TRUE, show.df = TRUE, digits = 3,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+#1b is high risk vs. passive control, excluding active control
+analysis1b_pcp <- lm(vaccinated ~ risk_messages + geis_pcp, data = analysis_data, 
+                 subset = algo_condition != "control")
+summary(analysis1b_pcp)
+
+tab_model(analysis1b_pcp, show.stat = TRUE, show.df = TRUE, digits = 3,
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+```
+
+
+## 4-week vaccination 
+### regressions
+####messages vs. control
+```{r}
+#1a is high risk vs. contact control, excluding no contact
+analysis1_4weeks <- lm(vaccinated_4weeks ~ risk_messages_controls_factor_2,
+                        data = analysis_data)
+summary(analysis1_4weeks)
+
+tab_model(analysis1_4weeks, show.stat = TRUE, show.df = TRUE, digits = 3,
+          title = "4-week vaccination",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+
+
+
+#including only contact and no-contact control in this analysis
+analysis3_4weeks <- lm(vaccinated_4weeks ~ contactcontrol, data = analysis_data, 
+                subset = algo_condition %in% c("nocontact","control"))
+summary(analysis3_4weeks)
+
+tab_model(analysis3_4weeks, show.stat = TRUE, 
+          show.df = TRUE, digits = 3,
+          title = "4-week vaccination",
+          col.order = c("est", "ci", "df.error", 
+                        "stat", "p"))
+```
+
+#### high risk differences
+```{r}
+
+#regression
+analysis4_4weeks <- lm(vaccinated_4weeks ~ high_risk_cond, data = analysis_data, 
+                subset = !algo_condition %in% c("nocontact","control"))
+summary(analysis4_4weeks)
+
+tab_model(analysis4_4weeks, show.stat = TRUE, show.df = TRUE, 
+          title = "Analysis 4: Comparing High-Risk Messages")
+
+x <- data.frame(pairs(emmeans(analysis4_4weeks, "high_risk_cond"), infer = TRUE))
+
+#pattern for reporting
+paste0(
+  x$contrast,": b = ",round(x$estimate, 3), 
+  ", [95% CI: ",round(x$lower.CL,3),", ",round(x$upper.CL,3),
+  "], t(",x$df,") = ",round(x$t.ratio,3), ", p = ", round(x$p.value,3))
+```
+
+## vaccine data source
+```{r}
+
+vax_source_analysis <- analysis_data %>% 
+  group_by(algo_condition) %>% 
+  summarize(EHR_data = sum(vax_source == "EHR_data", na.rm = TRUE),
+            Non_EHR_data = sum(vax_source == "Non_EHR_data", na.rm = TRUE),
+            n = EHR_data + Non_EHR_data)
+
+prop.test(vax_source_analysis$EHR_data, vax_source_analysis$n)
+
+
+
+analysis_data %>%
+  group_by(algo_condition_plot) %>%
+  summarize(
+    `Vaccinated: EHR data` = paste0(
+      format(round(mean(vax_source == "EHR_data", na.rm = TRUE)*100,1),nsmall = 1),
+      "% (",sum(vax_source == "EHR_data", na.rm = TRUE),")"),
+    `Vaccinated: Non-EHR data` = paste0(
+      format(round(mean(vax_source == "Non_EHR_data", na.rm = TRUE)*100,1),nsmall = 1),
+      "% (",sum(vax_source == "Non_EHR_data", na.rm = TRUE),")"),
+    `Not Vaccinated` = paste0(
+      format(round(mean(is.na(vax_source))*100,1),nsmall = 1),
+      "% (",sum(is.na(vax_source)),")"),
+    `Total N` = n()
+    )%>%
+  t() %>% 
+  kbl(caption = "Study 2 analysis sample") %>%
+  kable_classic(full_width = FALSE)
+
+
+```
+
+

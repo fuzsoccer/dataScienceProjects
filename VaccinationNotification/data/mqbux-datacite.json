@@ -1,0 +1,163 @@
+{
+  "alternateIdentifiers": [
+    {
+      "alternateIdentifier": "https://osf.io/mqbux",
+      "alternateIdentifierType": "URL"
+    }
+  ],
+  "contributors": [
+    {
+      "contributorName": {
+        "contributorName": "Center for Open Science",
+        "nameType": "Organizational"
+      },
+      "contributorType": "HostingInstitution",
+      "nameIdentifier": {
+        "nameIdentifier": "https://ror.org/05d5mza29",
+        "nameIdentifierScheme": "ROR"
+      }
+    }
+  ],
+  "creators": [
+    {
+      "creatorName": {
+        "creatorName": "Gail Rosenbaum",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://osf.io/pbfuv",
+        "nameIdentifierScheme": "URL"
+      }
+    },
+    {
+      "creatorName": {
+        "creatorName": "Amir Goren",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://www.linkedin.com/in/amir-goren-6082852/",
+        "nameIdentifierScheme": "URL"
+      }
+    },
+    {
+      "creatorName": {
+        "creatorName": "Maheen Shermohammed",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://osf.io/he7ar",
+        "nameIdentifierScheme": "URL"
+      }
+    },
+    {
+      "creatorName": {
+        "creatorName": "Donna M. Wolk",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://www.linkedin.com/in/donna-m-wolk-2387224/",
+        "nameIdentifierScheme": "URL"
+      }
+    },
+    {
+      "creatorName": {
+        "creatorName": "Ann Marie Tice",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://osf.io/szdv7",
+        "nameIdentifierScheme": "URL"
+      }
+    },
+    {
+      "affiliation": [
+        {
+          "affiliation": "Massachusetts Institute of Technology",
+          "affiliationIdentifier": "https://ror.org/042nb2s44",
+          "affiliationIdentifierScheme": "ROR"
+        }
+      ],
+      "creatorName": {
+        "creatorName": "Joseph Doyle",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://osf.io/w3shj",
+        "nameIdentifierScheme": "URL"
+      }
+    },
+    {
+      "creatorName": {
+        "creatorName": "Michelle Meyer",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://osf.io/bzg87",
+        "nameIdentifierScheme": "URL"
+      }
+    },
+    {
+      "creatorName": {
+        "creatorName": "Christopher F. Chabris",
+        "nameType": "Personal"
+      },
+      "nameIdentifier": {
+        "nameIdentifier": "https://osf.io/gwpcq",
+        "nameIdentifierScheme": "URL"
+      }
+    }
+  ],
+  "dates": [
+    {
+      "date": "2023-06-19",
+      "dateType": "Created"
+    },
+    {
+      "date": "2026-10-07",
+      "dateType": "Updated"
+    }
+  ],
+  "descriptions": [],
+  "fundingReferences": [],
+  "identifier": {
+    "identifier": "10.17605/OSF.IO/MQBUX",
+    "identifierType": "DOI"
+  },
+  "publicationYear": "2023",
+  "publisher": "OSF",
+  "relatedIdentifiers": [
+    {
+      "relatedIdentifier": "10.31234/osf.io/vtxza",
+      "relatedIdentifierType": "DOI",
+      "relationType": "IsSupplementTo"
+    }
+  ],
+  "relatedItems": [
+    {
+      "publicationYear": "2023",
+      "publisher": "PsyArXiv",
+      "relatedItemIdentifier": {
+        "relatedItemIdentifier": "10.31234/osf.io/vtxza",
+        "relatedItemIdentifierType": "DOI"
+      },
+      "relatedItemType": "Preprint",
+      "relationType": "IsSupplementTo",
+      "titles": [
+        {
+          "title": "Algorithm aversion or appreciation? Three randomized field trials of personalized risk-communication nudges to encourage flu vaccination"
+        }
+      ]
+    }
+  ],
+  "resourceType": {
+    "resourceType": "Project",
+    "resourceTypeGeneral": "Text"
+  },
+  "rightsList": [],
+  "subjects": [],
+  "titles": [
+    {
+      "title": "Algorithm-assisted personalized risk communication to encourage flu vaccination in the USA: three randomized field trials"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+population,variable,maximum_absolute_smd
+analysis,age_bin,0.023830058656664366
+analysis,dup_address,0.018848794179846046
+analysis,ethnicity,0.01908125504208307
+analysis,geis_pcp,0.03301263727301055
+analysis,race,0.04223566531903187
+analysis,risk_condition,0.006075555586403144
+analysis,sex,0.0266921125928148
+enrolled,ethnicity,0.01761269660688445
+enrolled,modalities_orig,0.03649254297855711
+enrolled,race,0.03726026106108245
+enrolled,risk_condition,0.0009686800083222902
+enrolled,sex,0.024158687176527617

@@ -1,0 +1,8 @@
+{
+  "statsmodels": "0.14.2",
+  "method": "OLS and HC1 with t reference distribution",
+  "families": "four source-aligned contrasts within each population/endpoint",
+  "no_shared_address_n": 35001,
+  "enrolled_excluding_contra_n": 44498,
+  "all_enrolled_n": 45061
+}

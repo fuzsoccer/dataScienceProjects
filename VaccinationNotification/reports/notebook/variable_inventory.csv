@@ -1,0 +1,17 @@
+,variable,type,unique_nonmissing,missing
+0,s_ID,object,42481,0
+1,sex,object,2,0
+2,race,object,6,0
+3,ethnicity,object,3,0
+4,age65plus,object,2,0
+5,age_bin,object,6,0
+6,modalities,object,6,0
+7,sms_date_bin,object,2,21163
+8,risk_condition,object,2,0
+9,algo_condition,object,5,0
+10,num_reasons,object,2,25486
+11,dup_address,int64,2,0
+12,geis_pcp,int64,2,0
+13,vaccinated,int64,2,0
+14,vax_source,object,2,28318
+15,vaccinated_4weeks,int64,2,0

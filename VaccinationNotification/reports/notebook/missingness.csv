@@ -1,0 +1,17 @@
+,missing_n,missing_fraction
+s_ID,0.0,0.0
+sex,0.0,0.0
+race,0.0,0.0
+ethnicity,0.0,0.0
+age65plus,0.0,0.0
+age_bin,0.0,0.0
+modalities,0.0,0.0
+sms_date_bin,21163.0,0.4981756549987053
+risk_condition,0.0,0.0
+algo_condition,0.0,0.0
+num_reasons,25486.0,0.5999387961676985
+dup_address,0.0,0.0
+geis_pcp,0.0,0.0
+vaccinated,0.0,0.0
+vax_source,28318.0,0.6666038935053318
+vaccinated_4weeks,0.0,0.0

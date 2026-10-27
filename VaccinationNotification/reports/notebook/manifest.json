@@ -1,0 +1,13 @@
+{
+  "python": "3.12.7",
+  "numpy": "1.26.4",
+  "pandas": "2.2.2",
+  "statsmodels": "0.14.2",
+  "enrolled_n": 45061,
+  "analyzed_n": 42481,
+  "inputs_sha256": {
+    "study_2_analysis_data_deid.csv": "0329c09a27057eb5d234f3e248f8bdd9b176cd1d7008700809dc6b97fbcc412c",
+    "study_2_fulldata_deid.csv": "55ae3d70ccc05e3126d57285d496da629400afbd4aea1d4c5163485480fd1277"
+  },
+  "method": "All analysis code defined in this notebook; no project-script execution"
+}

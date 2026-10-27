@@ -1,0 +1,17 @@
+{
+  "python": "3.12.7",
+  "pandas": "2.2.2",
+  "numpy": "1.26.4",
+  "randomized_reported_in_R_script": 45164,
+  "enrolled": 45061,
+  "analyzed": 42481,
+  "equal_allocation_enrolled_chisq": 0.01473558065733117,
+  "equal_allocation_enrolled_p": 0.9999729907837416,
+  "sha256": {
+    "Study_2_2026-04-15.Rmd": "bff90fc6dc85128893714531d8d0b74c7c6e3522cd1e46400972da99daedd560",
+    "study_2_analysis_data_deid.csv": "0329c09a27057eb5d234f3e248f8bdd9b176cd1d7008700809dc6b97fbcc412c",
+    "study_2_data_dictionary.txt": "ff1758567c67cd0a280c9314c2a3c48db3f6ed7ee59b70be4061daed1b12c7fb",
+    "study_2_fulldata_deid.csv": "55ae3d70ccc05e3126d57285d496da629400afbd4aea1d4c5163485480fd1277",
+    "study_2_time_data.csv": "b1c160a655fb63a8b748bf1920498232bbf6205458d4e9e89eecee231ba593d7"
+  }
+}

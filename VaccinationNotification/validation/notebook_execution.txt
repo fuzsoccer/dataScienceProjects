@@ -1,0 +1,66 @@
+6 code cells executed sequentially without errors in Python 3.12.7.
+The Jupyter kernel runner stalled and was stopped; interactive kernel execution is not verified.
+                   n  vaccinated      rate    ci_low   ci_high
+algo_condition                                                
+nocontact       8466        2668  0.315143  0.305333  0.325121
+control         8522        2807  0.329383  0.319483  0.339436
+unspecified     8498        2938  0.345728  0.335688  0.355908
+medrec          8470        2887  0.340850  0.330830  0.351015
+algorithm       8525        2863  0.335836  0.325886  0.345933
+                          contrast  n_treatment  n_reference  difference_pp  ci_low_pp  ci_high_pp  relative_lift_pct  p_value   p_holm
+Pooled high risk vs active control        25493         8522       1.141666  -0.013444    2.296776           3.466077 0.053739 0.188294
+    Reasons arms vs high risk only        16995         8498      -0.739360  -1.975721    0.497001          -2.138558 0.240354 0.480707
+      Algorithm vs medical records         8525         8470      -0.501428  -1.924148    0.921291          -1.471111 0.489699 0.489699
+        control vs passive control         8522         8466       1.423985   0.018603    2.829367           4.518537 0.047074 0.188294
+    unspecified vs passive control         8498         8466       3.058548   1.643657    4.473439           9.705273 0.000023 0.000160
+         medrec vs passive control         8470         8466       2.570713   1.157079    3.984348           8.157294 0.000367 0.002200
+      algorithm vs passive control         8525         8466       2.069285   0.660568    3.478002           6.566180 0.003999 0.019997
+Integrity checks passed; reports rebuilt.
+<IPython.core.display.Image object>
+population  variable       
+analysis    age_bin            0.023830
+            dup_address        0.018849
+            ethnicity          0.019081
+            geis_pcp           0.033013
+            race               0.042236
+            risk_condition     0.006076
+            sex                0.026692
+enrolled    ethnicity          0.017613
+            modalities_orig    0.036493
+            race               0.037260
+            risk_condition     0.000969
+            sex                0.024159
+                population           outcome                   contrast  difference_pp  hc1_ci_low_pp  hc1_ci_high_pp        hc1_p  hc1_p_holm_within_family
+                  analysis        vaccinated      1a_highrisk_vs_active       1.141666      -0.013498        2.296830 5.273752e-02              1.412056e-01
+                  analysis        vaccinated     1b_highrisk_vs_passive       2.565651       1.417601        3.713701 1.188900e-05              4.755601e-05
+                  analysis        vaccinated 2_reasons_vs_highrisk_only      -0.739360      -1.975806        0.497085 2.411840e-01              2.411840e-01
+                  analysis        vaccinated        3_active_vs_passive       1.423985       0.018446        2.829524 4.706852e-02              1.412056e-01
+analysis_no_shared_address        vaccinated      1a_highrisk_vs_active       1.510158       0.237527        2.782789 2.003225e-02              6.009676e-02
+analysis_no_shared_address        vaccinated     1b_highrisk_vs_passive       2.783415       1.516382        4.050448 1.669261e-05              6.677043e-05
+analysis_no_shared_address        vaccinated 2_reasons_vs_highrisk_only      -0.657609      -2.025776        0.710559 3.461474e-01              3.461474e-01
+analysis_no_shared_address        vaccinated        3_active_vs_passive       1.273258      -0.275222        2.821738 1.070400e-01              2.140800e-01
+ enrolled_excluding_contra        vaccinated      1a_highrisk_vs_active       1.215985       0.094025        2.337945 3.365276e-02              1.009583e-01
+ enrolled_excluding_contra        vaccinated     1b_highrisk_vs_passive       2.537993       1.425954        3.650033 7.724049e-06              3.089620e-05
+ enrolled_excluding_contra        vaccinated 2_reasons_vs_highrisk_only      -0.742295      -1.943923        0.459332 2.259804e-01              2.259804e-01
+ enrolled_excluding_contra        vaccinated        3_active_vs_passive       1.322008      -0.040431        2.684448 5.719645e-02              1.143929e-01
+              all_enrolled        vaccinated      1a_highrisk_vs_active       1.174717       0.062520        2.286913 3.843982e-02              1.153195e-01
+              all_enrolled        vaccinated     1b_highrisk_vs_passive       2.475247       1.372708        3.577786 1.083864e-05              4.335458e-05
+              all_enrolled        vaccinated 2_reasons_vs_highrisk_only      -0.762108      -1.952608        0.428391 2.095826e-01              2.095826e-01
+              all_enrolled        vaccinated        3_active_vs_passive       1.300530      -0.050509        2.651570 5.920109e-02              1.184022e-01
+                  analysis vaccinated_4weeks      1a_highrisk_vs_active       0.198002      -0.780841        1.176845 6.917543e-01              6.917543e-01
+                  analysis vaccinated_4weeks     1b_highrisk_vs_passive       3.008002       2.068668        3.947336 3.503236e-10              1.401294e-09
+                  analysis vaccinated_4weeks 2_reasons_vs_highrisk_only      -1.022612      -2.071379        0.026155 5.599325e-02              1.119865e-01
+                  analysis vaccinated_4weeks        3_active_vs_passive       2.810000       1.644722        3.975279 2.300577e-06              6.901732e-06
+All model coefficients match direct differences in means.
+                                    contrast  hc1_difference_pp  hc1_ci_low_pp  hc1_ci_high_pp    hc1_p  hc1_p_holm_within_family
+               Three vs one: medical records          -1.710666      -3.729505        0.308173 0.096753                  0.387010
+                     Three vs one: algorithm           0.320333      -1.685410        2.326075 0.754251                  0.754251
+Interaction: algorithm minus medical records           2.030999      -0.814825        4.876822 0.161867                  0.485601
+             Three vs one: equal-arm average          -0.695167      -2.118079        0.727745 0.338271                  0.676543
+                  contrast     n  odds_ratio  or_ci_low  or_ci_high  p_value   p_holm
+     1a_highrisk_vs_active 34015    1.052580   0.999173    1.108842 0.053752 0.141261
+    1b_highrisk_vs_passive 33959    1.123502   1.065868    1.184251 0.000015 0.000059
+2_reasons_vs_highrisk_only 25493    0.967679   0.916035    1.022235 0.240362 0.240362
+       3_active_vs_passive 16988    1.067379   1.000840    1.138342 0.047087 0.141261
+Unadjusted model contrasts match observed cell differences.
+<IPython.core.display.Image object>

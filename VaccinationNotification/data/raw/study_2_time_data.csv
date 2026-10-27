@@ -1,0 +1,582 @@
+time,algo_condition,wkend,vaccinated_analysis_df_0,vaccinated_analysis_df_1,vaccinated,holiday,buis_day_from_letter,sms_early,sms_late
+-39,High risk only,weekend,1,0,1,0,NA,NA,NA
+-39,"High risk algorithm
++ reasons",weekend,1,0,1,0,NA,NA,NA
+-38,"High risk algorithm
++ reasons",weekday,1,0,1,0,-27,NA,NA
+-37,"High risk algorithm
++ reasons",weekday,1,0,1,0,-26,NA,NA
+-36,Active control,weekday,1,0,1,0,-25,NA,NA
+-34,Passive control,weekday,2,0,2,0,-23,NA,NA
+-34,Active control,weekday,4,0,4,0,-23,NA,NA
+-34,High risk only,weekday,1,0,1,0,-23,NA,NA
+-34,"High risk medical records
++ reasons",weekday,1,0,1,0,-23,NA,NA
+-34,"High risk algorithm
++ reasons",weekday,1,0,1,0,-23,NA,NA
+-33,"High risk algorithm
++ reasons",weekend,1,0,1,0,NA,NA,NA
+-32,Active control,weekend,1,0,1,0,NA,NA,NA
+-31,Passive control,weekday,1,0,1,0,-22,NA,NA
+-30,Active control,weekday,1,0,1,0,-21,NA,NA
+-30,High risk only,weekday,1,0,1,0,-21,NA,NA
+-29,Active control,weekday,1,0,1,0,-20,NA,NA
+-29,High risk only,weekday,1,0,1,0,-20,NA,NA
+-28,Passive control,weekday,1,0,1,0,-19,NA,NA
+-28,Active control,weekday,1,0,1,0,-19,NA,NA
+-27,"High risk medical records
++ reasons",weekday,1,0,1,0,-18,NA,NA
+-27,"High risk algorithm
++ reasons",weekday,1,0,1,0,-18,NA,NA
+-26,Passive control,weekend,1,0,1,0,NA,NA,NA
+-26,High risk only,weekend,1,0,1,0,NA,NA,NA
+-26,"High risk algorithm
++ reasons",weekend,1,0,1,0,NA,NA,NA
+-25,Passive control,weekend,1,0,1,0,NA,NA,NA
+-25,Active control,weekend,4,0,4,0,NA,NA,NA
+-25,"High risk medical records
++ reasons",weekend,1,0,1,0,NA,NA,NA
+-24,Passive control,weekday,5,0,5,0,-17,NA,NA
+-24,Active control,weekday,1,0,1,0,-17,NA,NA
+-24,"High risk algorithm
++ reasons",weekday,1,0,1,0,-17,NA,NA
+-23,Passive control,weekday,2,0,2,0,-16,NA,NA
+-23,Active control,weekday,2,0,2,0,-16,NA,NA
+-23,High risk only,weekday,1,0,1,0,-16,NA,NA
+-23,"High risk medical records
++ reasons",weekday,2,0,2,0,-16,NA,NA
+-23,"High risk algorithm
++ reasons",weekday,1,0,1,0,-16,NA,NA
+-22,Passive control,weekday,2,0,2,0,-15,NA,NA
+-22,Active control,weekday,1,0,1,0,-15,NA,NA
+-22,High risk only,weekday,1,0,1,0,-15,NA,NA
+-22,"High risk algorithm
++ reasons",weekday,2,0,2,0,-15,NA,NA
+-21,Passive control,weekday,1,0,1,0,-14,NA,NA
+-21,High risk only,weekday,3,0,3,0,-14,NA,NA
+-21,"High risk medical records
++ reasons",weekday,3,0,3,0,-14,NA,NA
+-21,"High risk algorithm
++ reasons",weekday,1,0,1,0,-14,NA,NA
+-20,Passive control,weekday,4,0,4,0,-13,NA,NA
+-20,Active control,weekday,3,0,3,0,-13,NA,NA
+-20,High risk only,weekday,1,0,1,0,-13,NA,NA
+-19,Passive control,weekend,1,0,1,0,NA,NA,NA
+-19,Active control,weekend,2,0,2,0,NA,NA,NA
+-19,High risk only,weekend,1,0,1,0,NA,NA,NA
+-19,"High risk medical records
++ reasons",weekend,1,0,1,0,NA,NA,NA
+-18,"High risk medical records
++ reasons",weekend,2,0,2,0,NA,NA,NA
+-17,Passive control,weekday,3,0,3,0,-12,NA,NA
+-17,Active control,weekday,1,0,1,0,-12,NA,NA
+-17,"High risk medical records
++ reasons",weekday,1,0,1,0,-12,NA,NA
+-17,"High risk algorithm
++ reasons",weekday,1,0,1,0,-12,NA,NA
+-16,Passive control,weekday,2,0,2,0,-11,NA,NA
+-16,Active control,weekday,4,0,4,0,-11,NA,NA
+-16,"High risk medical records
++ reasons",weekday,2,0,2,0,-11,NA,NA
+-16,"High risk algorithm
++ reasons",weekday,3,0,3,0,-11,NA,NA
+-15,Passive control,weekday,1,0,1,0,-10,NA,NA
+-15,Active control,weekday,1,0,1,0,-10,NA,NA
+-15,High risk only,weekday,2,0,2,0,-10,NA,NA
+-14,Passive control,weekday,1,0,1,0,-9,NA,NA
+-14,Active control,weekday,3,0,3,0,-9,NA,NA
+-14,High risk only,weekday,3,0,3,0,-9,NA,NA
+-14,"High risk medical records
++ reasons",weekday,1,0,1,0,-9,NA,NA
+-14,"High risk algorithm
++ reasons",weekday,1,0,1,0,-9,NA,NA
+-13,Passive control,weekday,1,0,1,0,-8,NA,NA
+-13,Active control,weekday,1,0,1,0,-8,NA,NA
+-13,High risk only,weekday,3,0,3,0,-8,NA,NA
+-13,"High risk algorithm
++ reasons",weekday,1,0,1,0,-8,NA,NA
+-12,Passive control,weekend,1,0,1,0,NA,NA,NA
+-12,High risk only,weekend,2,0,2,0,NA,NA,NA
+-12,"High risk medical records
++ reasons",weekend,4,0,4,0,NA,NA,NA
+-12,"High risk algorithm
++ reasons",weekend,1,0,1,0,NA,NA,NA
+-11,Active control,weekend,1,0,1,0,NA,NA,NA
+-11,"High risk medical records
++ reasons",weekend,1,0,1,0,NA,NA,NA
+-10,Passive control,weekday,7,0,7,0,-7,NA,NA
+-10,Active control,weekday,4,0,4,0,-7,NA,NA
+-10,High risk only,weekday,2,0,2,0,-7,NA,NA
+-10,"High risk medical records
++ reasons",weekday,2,0,2,0,-7,NA,NA
+-10,"High risk algorithm
++ reasons",weekday,3,0,3,0,-7,NA,NA
+-9,Passive control,weekday,1,0,1,0,-6,NA,NA
+-9,Active control,weekday,4,0,4,0,-6,NA,NA
+-9,High risk only,weekday,3,0,3,0,-6,NA,NA
+-9,"High risk medical records
++ reasons",weekday,2,0,2,0,-6,NA,NA
+-9,"High risk algorithm
++ reasons",weekday,5,0,5,0,-6,NA,NA
+-8,Passive control,weekday,38,0,38,0,-5,NA,NA
+-8,Active control,weekday,26,0,26,0,-5,NA,NA
+-8,High risk only,weekday,19,0,19,0,-5,NA,NA
+-8,"High risk medical records
++ reasons",weekday,24,0,24,0,-5,NA,NA
+-8,"High risk algorithm
++ reasons",weekday,28,0,28,0,-5,NA,NA
+-7,Passive control,weekday,24,0,24,0,-4,NA,NA
+-7,Active control,weekday,19,0,19,0,-4,NA,NA
+-7,High risk only,weekday,24,0,24,0,-4,NA,NA
+-7,"High risk medical records
++ reasons",weekday,26,0,26,0,-4,NA,NA
+-7,"High risk algorithm
++ reasons",weekday,23,0,23,0,-4,NA,NA
+-6,Passive control,weekday,24,0,24,0,-3,NA,NA
+-6,Active control,weekday,33,0,33,0,-3,NA,NA
+-6,High risk only,weekday,22,0,22,0,-3,NA,NA
+-6,"High risk medical records
++ reasons",weekday,24,0,24,0,-3,NA,NA
+-6,"High risk algorithm
++ reasons",weekday,24,0,24,0,-3,NA,NA
+-5,Passive control,weekend,5,0,5,0,NA,NA,NA
+-5,Active control,weekend,2,0,2,0,NA,NA,NA
+-5,High risk only,weekend,6,0,6,0,NA,NA,NA
+-5,"High risk medical records
++ reasons",weekend,5,0,5,0,NA,NA,NA
+-5,"High risk algorithm
++ reasons",weekend,4,0,4,0,NA,NA,NA
+-4,Passive control,weekend,4,0,4,0,NA,NA,NA
+-4,Active control,weekend,4,0,4,0,NA,NA,NA
+-4,High risk only,weekend,6,0,6,0,NA,NA,NA
+-4,"High risk medical records
++ reasons",weekend,3,0,3,0,NA,NA,NA
+-4,"High risk algorithm
++ reasons",weekend,3,0,3,0,NA,NA,NA
+-3,Passive control,weekday,6,0,6,1,NA,NA,NA
+-3,Active control,weekday,1,0,1,1,NA,NA,NA
+-3,High risk only,weekday,3,0,3,1,NA,NA,NA
+-3,"High risk medical records
++ reasons",weekday,5,0,5,1,NA,NA,NA
+-3,"High risk algorithm
++ reasons",weekday,6,0,6,1,NA,NA,NA
+-2,Passive control,weekday,53,0,53,0,-2,NA,NA
+-2,Active control,weekday,46,0,46,0,-2,NA,NA
+-2,High risk only,weekday,46,0,46,0,-2,NA,NA
+-2,"High risk medical records
++ reasons",weekday,57,0,57,0,-2,NA,NA
+-2,"High risk algorithm
++ reasons",weekday,50,0,50,0,-2,NA,NA
+-1,Passive control,weekday,55,0,55,0,-1,NA,NA
+-1,Active control,weekday,43,0,43,0,-1,NA,NA
+-1,High risk only,weekday,56,0,56,0,-1,NA,NA
+-1,"High risk medical records
++ reasons",weekday,56,0,56,0,-1,NA,NA
+-1,"High risk algorithm
++ reasons",weekday,36,0,36,0,-1,NA,NA
+0,Passive control,weekday,0,63,63,0,0,NA,NA
+0,Active control,weekday,1,52,53,0,0,17,19
+0,High risk only,weekday,0,45,45,0,0,12,12
+0,"High risk medical records
++ reasons",weekday,3,55,58,0,0,17,18
+0,"High risk algorithm
++ reasons",weekday,2,60,62,0,0,26,16
+1,Passive control,weekday,2,49,51,0,1,NA,NA
+1,Active control,weekday,2,50,52,0,1,17,13
+1,High risk only,weekday,0,48,48,0,1,15,18
+1,"High risk medical records
++ reasons",weekday,2,41,43,0,1,11,14
+1,"High risk algorithm
++ reasons",weekday,0,56,56,0,1,18,27
+2,Passive control,weekend,0,8,8,0,NA,NA,NA
+2,Active control,weekend,0,19,19,0,NA,8,6
+2,High risk only,weekend,0,16,16,0,NA,7,7
+2,"High risk medical records
++ reasons",weekend,0,13,13,0,NA,5,6
+2,"High risk algorithm
++ reasons",weekend,0,7,7,0,NA,1,3
+3,Passive control,weekend,0,4,4,0,NA,NA,NA
+3,Active control,weekend,0,7,7,0,NA,2,2
+3,High risk only,weekend,0,2,2,0,NA,NA,NA
+3,"High risk medical records
++ reasons",weekend,0,3,3,0,NA,1,0
+3,"High risk algorithm
++ reasons",weekend,0,6,6,0,NA,2,2
+4,Passive control,weekday,3,49,52,0,2,NA,NA
+4,Active control,weekday,2,56,58,0,2,20,16
+4,High risk only,weekday,1,69,70,0,2,25,24
+4,"High risk medical records
++ reasons",weekday,0,49,49,0,2,18,15
+4,"High risk algorithm
++ reasons",weekday,2,72,74,0,2,23,21
+5,Passive control,weekday,2,65,67,0,3,NA,NA
+5,Active control,weekday,0,69,69,0,3,26,17
+5,High risk only,weekday,1,84,85,0,3,23,24
+5,"High risk medical records
++ reasons",weekday,2,89,91,0,3,19,30
+5,"High risk algorithm
++ reasons",weekday,1,83,84,0,3,18,33
+6,Passive control,weekday,1,69,70,0,4,NA,NA
+6,Active control,weekday,4,76,80,0,4,24,25
+6,High risk only,weekday,2,90,92,0,4,25,29
+6,"High risk medical records
++ reasons",weekday,1,69,70,0,4,17,25
+6,"High risk algorithm
++ reasons",weekday,4,73,77,0,4,25,17
+7,Passive control,weekday,2,48,50,0,5,NA,NA
+7,Active control,weekday,1,73,74,0,5,22,29
+7,High risk only,weekday,1,82,83,0,5,28,27
+7,"High risk medical records
++ reasons",weekday,2,76,78,0,5,20,25
+7,"High risk algorithm
++ reasons",weekday,3,87,90,0,5,26,33
+8,Passive control,weekday,0,35,35,0,6,NA,NA
+8,Active control,weekday,0,66,66,0,6,18,31
+8,High risk only,weekday,3,77,80,0,6,25,28
+8,"High risk medical records
++ reasons",weekday,1,69,70,0,6,14,26
+8,"High risk algorithm
++ reasons",weekday,2,60,62,0,6,17,16
+9,Passive control,weekend,1,42,43,0,NA,NA,NA
+9,Active control,weekend,1,59,60,0,NA,11,25
+9,High risk only,weekend,1,63,64,0,NA,22,25
+9,"High risk medical records
++ reasons",weekend,1,52,53,0,NA,15,16
+9,"High risk algorithm
++ reasons",weekend,2,44,46,0,NA,10,22
+10,Passive control,weekend,1,2,3,0,NA,NA,NA
+10,Active control,weekend,0,4,4,0,NA,1,3
+10,High risk only,weekend,0,2,2,0,NA,NA,NA
+10,"High risk medical records
++ reasons",weekend,0,7,7,0,NA,2,3
+10,"High risk algorithm
++ reasons",weekend,0,9,9,0,NA,3,0
+11,Passive control,weekday,1,69,70,0,7,NA,NA
+11,Active control,weekday,0,92,92,0,7,23,27
+11,High risk only,weekday,4,91,95,0,7,33,23
+11,"High risk medical records
++ reasons",weekday,3,81,84,0,7,23,25
+11,"High risk algorithm
++ reasons",weekday,5,91,96,0,7,33,24
+12,Passive control,weekday,2,52,54,0,8,NA,NA
+12,Active control,weekday,0,71,71,0,8,20,22
+12,High risk only,weekday,3,76,79,0,8,31,26
+12,"High risk medical records
++ reasons",weekday,2,90,92,0,8,32,22
+12,"High risk algorithm
++ reasons",weekday,2,74,76,0,8,16,27
+13,Passive control,weekday,2,70,72,0,9,NA,NA
+13,Active control,weekday,1,75,76,0,9,26,19
+13,High risk only,weekday,1,63,64,0,9,16,28
+13,"High risk medical records
++ reasons",weekday,1,83,84,0,9,29,27
+13,"High risk algorithm
++ reasons",weekday,1,87,88,0,9,24,27
+14,Passive control,weekday,3,64,67,0,10,NA,NA
+14,Active control,weekday,1,65,66,0,10,17,28
+14,High risk only,weekday,3,64,67,0,10,20,26
+14,"High risk medical records
++ reasons",weekday,1,67,68,0,10,20,23
+14,"High risk algorithm
++ reasons",weekday,0,67,67,0,10,18,20
+15,Passive control,weekday,2,65,67,0,11,NA,NA
+15,Active control,weekday,3,62,65,0,11,19,27
+15,High risk only,weekday,5,73,78,0,11,26,25
+15,"High risk medical records
++ reasons",weekday,1,69,70,0,11,22,22
+15,"High risk algorithm
++ reasons",weekday,1,60,61,0,11,21,16
+16,Passive control,weekend,1,7,8,0,NA,NA,NA
+16,Active control,weekend,0,11,11,0,NA,1,5
+16,High risk only,weekend,0,11,11,0,NA,4,6
+16,"High risk medical records
++ reasons",weekend,0,8,8,0,NA,4,3
+16,"High risk algorithm
++ reasons",weekend,0,17,17,0,NA,8,3
+17,Passive control,weekend,0,3,3,0,NA,NA,NA
+17,Active control,weekend,0,6,6,0,NA,3,0
+17,High risk only,weekend,0,3,3,0,NA,1,1
+17,"High risk medical records
++ reasons",weekend,1,2,3,0,NA,0,1
+17,"High risk algorithm
++ reasons",weekend,1,4,5,0,NA,2,1
+18,Passive control,weekday,1,68,69,0,12,NA,NA
+18,Active control,weekday,2,80,82,0,12,28,24
+18,High risk only,weekday,1,85,86,0,12,30,31
+18,"High risk medical records
++ reasons",weekday,1,71,72,0,12,25,27
+18,"High risk algorithm
++ reasons",weekday,2,78,80,0,12,24,26
+19,Passive control,weekday,1,87,88,0,13,NA,NA
+19,Active control,weekday,1,91,92,0,13,26,41
+19,High risk only,weekday,1,100,101,0,13,34,35
+19,"High risk medical records
++ reasons",weekday,1,74,75,0,13,35,21
+19,"High risk algorithm
++ reasons",weekday,0,83,83,0,13,18,38
+20,Passive control,weekday,3,68,71,0,14,NA,NA
+20,Active control,weekday,3,77,80,0,14,29,24
+20,High risk only,weekday,2,90,92,0,14,32,31
+20,"High risk medical records
++ reasons",weekday,3,78,81,0,14,28,26
+20,"High risk algorithm
++ reasons",weekday,2,85,87,0,14,30,30
+21,Passive control,weekday,2,53,55,0,15,NA,NA
+21,Active control,weekday,1,80,81,0,15,24,26
+21,High risk only,weekday,3,87,90,0,15,23,34
+21,"High risk medical records
++ reasons",weekday,3,74,77,0,15,19,28
+21,"High risk algorithm
++ reasons",weekday,0,85,85,0,15,37,30
+22,Passive control,weekday,1,78,79,0,16,NA,NA
+22,Active control,weekday,1,95,96,0,16,35,32
+22,High risk only,weekday,3,79,82,0,16,23,31
+22,"High risk medical records
++ reasons",weekday,0,97,97,0,16,27,37
+22,"High risk algorithm
++ reasons",weekday,1,82,83,0,16,31,19
+23,Passive control,weekend,3,45,48,0,NA,NA,NA
+23,Active control,weekend,0,54,54,0,NA,16,22
+23,High risk only,weekend,2,42,44,0,NA,16,13
+23,"High risk medical records
++ reasons",weekend,0,44,44,0,NA,15,13
+23,"High risk algorithm
++ reasons",weekend,2,32,34,0,NA,11,12
+24,Passive control,weekend,0,4,4,0,NA,NA,NA
+24,Active control,weekend,0,4,4,0,NA,2,1
+24,High risk only,weekend,0,3,3,0,NA,2,1
+24,"High risk medical records
++ reasons",weekend,0,3,3,0,NA,2,1
+24,"High risk algorithm
++ reasons",weekend,0,3,3,0,NA,1,1
+25,Passive control,weekday,0,63,63,0,17,NA,NA
+25,Active control,weekday,0,65,65,0,17,30,18
+25,High risk only,weekday,1,70,71,0,17,21,25
+25,"High risk medical records
++ reasons",weekday,1,65,66,0,17,17,26
+25,"High risk algorithm
++ reasons",weekday,1,74,75,0,17,22,28
+26,Passive control,weekday,2,72,74,0,18,NA,NA
+26,Active control,weekday,1,75,76,0,18,26,21
+26,High risk only,weekday,1,77,78,0,18,28,23
+26,"High risk medical records
++ reasons",weekday,1,77,78,0,18,30,26
+26,"High risk algorithm
++ reasons",weekday,0,58,58,0,18,17,21
+27,Passive control,weekday,3,70,73,0,19,NA,NA
+27,Active control,weekday,4,67,71,0,19,17,28
+27,High risk only,weekday,1,92,93,0,19,21,35
+27,"High risk medical records
++ reasons",weekday,0,78,78,0,19,22,23
+27,"High risk algorithm
++ reasons",weekday,4,80,84,0,19,29,26
+28,Passive control,weekday,1,69,70,0,20,NA,NA
+28,Active control,weekday,2,89,91,0,20,34,32
+28,High risk only,weekday,0,76,76,0,20,26,26
+28,"High risk medical records
++ reasons",weekday,2,79,81,0,20,26,28
+28,"High risk algorithm
++ reasons",weekday,2,66,68,0,20,22,18
+29,Passive control,weekday,0,63,63,0,21,NA,NA
+29,Active control,weekday,0,61,61,0,21,20,24
+29,High risk only,weekday,3,76,79,0,21,19,32
+29,"High risk medical records
++ reasons",weekday,2,74,76,0,21,27,25
+29,"High risk algorithm
++ reasons",weekday,0,78,78,0,21,23,31
+30,Passive control,weekend,0,11,11,0,NA,NA,NA
+30,Active control,weekend,0,13,13,0,NA,2,7
+30,High risk only,weekend,0,6,6,0,NA,3,3
+30,"High risk medical records
++ reasons",weekend,0,22,22,0,NA,9,6
+30,"High risk algorithm
++ reasons",weekend,0,17,17,0,NA,9,4
+31,Passive control,weekend,0,7,7,0,NA,NA,NA
+31,Active control,weekend,0,5,5,0,NA,3,2
+31,High risk only,weekend,0,14,14,0,NA,5,4
+31,"High risk medical records
++ reasons",weekend,1,6,7,0,NA,2,3
+31,"High risk algorithm
++ reasons",weekend,1,6,7,0,NA,2,3
+32,Passive control,weekday,1,72,73,0,22,NA,NA
+32,Active control,weekday,1,65,66,0,22,27,22
+32,High risk only,weekday,1,74,75,0,22,23,29
+32,"High risk medical records
++ reasons",weekday,1,58,59,0,22,25,17
+32,"High risk algorithm
++ reasons",weekday,2,49,51,0,22,11,24
+33,Passive control,weekday,5,59,64,0,23,NA,NA
+33,Active control,weekday,0,62,62,0,23,23,23
+33,High risk only,weekday,2,78,80,0,23,22,26
+33,"High risk medical records
++ reasons",weekday,2,70,72,0,23,26,21
+33,"High risk algorithm
++ reasons",weekday,2,68,70,0,23,25,22
+34,Passive control,weekday,2,82,84,0,24,NA,NA
+34,Active control,weekday,1,72,73,0,24,19,20
+34,High risk only,weekday,1,61,62,0,24,25,14
+34,"High risk medical records
++ reasons",weekday,2,77,79,0,24,22,25
+34,"High risk algorithm
++ reasons",weekday,4,86,90,0,24,33,29
+35,Passive control,weekday,2,72,74,0,25,NA,NA
+35,Active control,weekday,1,65,66,0,25,31,21
+35,High risk only,weekday,0,79,79,0,25,30,25
+35,"High risk medical records
++ reasons",weekday,1,52,53,0,25,14,15
+35,"High risk algorithm
++ reasons",weekday,2,72,74,0,25,20,30
+36,Passive control,weekday,0,77,77,0,26,NA,NA
+36,Active control,weekday,1,63,64,0,26,20,19
+36,High risk only,weekday,1,68,69,0,26,24,22
+36,"High risk medical records
++ reasons",weekday,0,87,87,0,26,29,31
+36,"High risk algorithm
++ reasons",weekday,1,65,66,0,26,24,20
+37,Passive control,weekend,0,41,41,0,NA,NA,NA
+37,Active control,weekend,2,44,46,0,NA,16,18
+37,High risk only,weekend,1,31,32,0,NA,8,13
+37,"High risk medical records
++ reasons",weekend,1,42,43,0,NA,14,17
+37,"High risk algorithm
++ reasons",weekend,1,40,41,0,NA,19,11
+38,Passive control,weekend,1,3,4,0,NA,NA,NA
+38,Active control,weekend,0,2,2,0,NA,1,0
+38,High risk only,weekend,1,3,4,0,NA,1,0
+38,"High risk medical records
++ reasons",weekend,0,2,2,0,NA,1,1
+38,"High risk algorithm
++ reasons",weekend,0,3,3,0,NA,1,1
+39,Passive control,weekday,2,67,69,0,27,NA,NA
+39,Active control,weekday,0,52,52,0,27,15,21
+39,High risk only,weekday,1,56,57,0,27,18,19
+39,"High risk medical records
++ reasons",weekday,1,64,65,0,27,22,20
+39,"High risk algorithm
++ reasons",weekday,0,60,60,0,27,23,17
+40,Passive control,weekday,1,56,57,0,28,NA,NA
+40,Active control,weekday,1,56,57,0,28,27,11
+40,High risk only,weekday,1,74,75,0,28,29,19
+40,"High risk medical records
++ reasons",weekday,0,59,59,0,28,22,18
+40,"High risk algorithm
++ reasons",weekday,1,63,64,0,28,21,22
+41,Passive control,weekday,3,55,58,0,29,NA,NA
+41,Active control,weekday,2,62,64,0,29,13,24
+41,High risk only,weekday,1,57,58,0,29,15,18
+41,"High risk medical records
++ reasons",weekday,3,63,66,0,29,19,23
+41,"High risk algorithm
++ reasons",weekday,0,60,60,0,29,21,18
+42,Passive control,weekday,3,55,58,0,30,NA,NA
+42,Active control,weekday,2,37,39,0,30,12,13
+42,High risk only,weekday,3,52,55,0,30,21,12
+42,"High risk medical records
++ reasons",weekday,1,63,64,0,30,17,22
+42,"High risk algorithm
++ reasons",weekday,0,68,68,0,30,15,30
+43,Passive control,weekday,3,45,48,0,31,NA,NA
+43,Active control,weekday,1,35,36,0,31,10,17
+43,High risk only,weekday,1,41,42,0,31,12,15
+43,"High risk medical records
++ reasons",weekday,2,58,60,0,31,22,19
+43,"High risk algorithm
++ reasons",weekday,0,47,47,0,31,17,19
+44,Passive control,weekend,0,11,11,0,NA,NA,NA
+44,Active control,weekend,0,6,6,0,NA,3,1
+44,High risk only,weekend,0,5,5,0,NA,1,1
+44,"High risk medical records
++ reasons",weekend,0,5,5,0,NA,3,1
+44,"High risk algorithm
++ reasons",weekend,0,6,6,0,NA,3,2
+45,Passive control,weekend,0,3,3,0,NA,NA,NA
+45,Active control,weekend,0,3,3,0,NA,1,2
+45,High risk only,weekend,0,4,4,0,NA,3,1
+45,"High risk medical records
++ reasons",weekend,0,5,5,0,NA,3,1
+45,"High risk algorithm
++ reasons",weekend,0,3,3,0,NA,0,1
+46,Passive control,weekday,0,48,48,0,32,NA,NA
+46,Active control,weekday,0,59,59,0,32,20,22
+46,High risk only,weekday,1,43,44,0,32,16,13
+46,"High risk medical records
++ reasons",weekday,0,43,43,0,32,11,18
+46,"High risk algorithm
++ reasons",weekday,1,52,53,0,32,17,21
+47,Passive control,weekday,0,63,63,0,33,NA,NA
+47,Active control,weekday,0,45,45,0,33,16,16
+47,High risk only,weekday,0,46,46,0,33,13,16
+47,"High risk medical records
++ reasons",weekday,1,44,45,0,33,17,16
+47,"High risk algorithm
++ reasons",weekday,1,47,48,0,33,11,21
+48,Passive control,weekday,2,52,54,0,34,NA,NA
+48,Active control,weekday,0,36,36,0,34,11,14
+48,High risk only,weekday,1,42,43,0,34,12,20
+48,"High risk medical records
++ reasons",weekday,1,52,53,0,34,13,19
+48,"High risk algorithm
++ reasons",weekday,0,39,39,0,34,18,12
+49,Passive control,weekday,1,43,44,0,35,NA,NA
+49,Active control,weekday,1,43,44,0,35,17,17
+49,High risk only,weekday,0,47,47,0,35,16,14
+49,"High risk medical records
++ reasons",weekday,1,36,37,0,35,11,16
+49,"High risk algorithm
++ reasons",weekday,0,32,32,0,35,9,10
+50,Passive control,weekday,1,45,46,0,36,NA,NA
+50,Active control,weekday,0,39,39,0,36,15,12
+50,High risk only,weekday,0,34,34,0,36,10,9
+50,"High risk medical records
++ reasons",weekday,0,47,47,0,36,18,16
+50,"High risk algorithm
++ reasons",weekday,0,42,42,0,36,18,13
+51,Passive control,weekend,1,9,10,0,NA,NA,NA
+51,Active control,weekend,0,6,6,0,NA,4,1
+51,High risk only,weekend,0,7,7,0,NA,0,2
+51,"High risk medical records
++ reasons",weekend,0,7,7,0,NA,4,2
+51,"High risk algorithm
++ reasons",weekend,0,6,6,0,NA,1,2
+52,Passive control,weekend,0,1,1,0,NA,NA,NA
+52,Active control,weekend,0,5,5,0,NA,0,1
+52,High risk only,weekend,1,5,6,0,NA,2,1
+52,"High risk medical records
++ reasons",weekend,0,3,3,0,NA,2,0
+52,"High risk algorithm
++ reasons",weekend,0,5,5,0,NA,2,0
+53,Passive control,weekday,0,61,61,0,37,NA,NA
+53,Active control,weekday,1,57,58,0,37,19,15
+53,High risk only,weekday,0,52,52,0,37,17,19
+53,"High risk medical records
++ reasons",weekday,2,46,48,0,37,14,16
+53,"High risk algorithm
++ reasons",weekday,0,42,42,0,37,18,14
+54,Passive control,weekday,1,35,36,0,38,NA,NA
+54,Active control,weekday,0,35,35,0,38,14,10
+54,High risk only,weekday,1,33,34,0,38,13,8
+54,"High risk medical records
++ reasons",weekday,1,38,39,0,38,11,11
+54,"High risk algorithm
++ reasons",weekday,1,35,36,0,38,10,11
+55,Passive control,weekday,1,36,37,0,39,NA,NA
+55,Active control,weekday,0,27,27,0,39,2,14
+55,High risk only,weekday,0,30,30,0,39,12,8
+55,"High risk medical records
++ reasons",weekday,2,38,40,0,39,9,12
+55,"High risk algorithm
++ reasons",weekday,1,29,30,0,39,7,11
+56,Passive control,weekday,1,33,34,0,40,NA,NA
+56,Active control,weekday,2,38,40,0,40,13,14
+56,High risk only,weekday,2,25,27,0,40,6,13
+56,"High risk medical records
++ reasons",weekday,2,33,35,0,40,6,16
+56,"High risk algorithm
++ reasons",weekday,1,29,30,0,40,11,9
+57,Passive control,weekday,0,22,22,0,41,NA,NA
+57,Active control,weekday,0,24,24,0,41,5,4
+57,High risk only,weekday,0,35,35,0,41,11,12
+57,"High risk medical records
++ reasons",weekday,0,30,30,0,41,11,13
+57,"High risk algorithm
++ reasons",weekday,0,31,31,0,41,12,10
