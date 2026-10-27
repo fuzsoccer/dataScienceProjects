@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Andrew Laabs analyzes a five-arm vaccination messaging experiment: personalized risk messages, robust comparisons, and reproducible Python results.">
+  <title>Vaccination Messaging | Andrew Laabs</title>
+  <style>
+    :root { color-scheme: light; --ink:#172d37; --muted:#516570; --teal:#176b74; --line:#dbe3e6; --paper:#f6f8f7; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    header, main, footer { width:min(1040px,calc(100% - 44px)); margin:auto; }
+    header { padding:28px 0; display:flex; gap:20px; justify-content:space-between; border-bottom:1px solid var(--line); }
+    a { color:var(--teal); text-underline-offset:4px; }
+    header a { text-decoration:none; }
+    .name { font-weight:750; color:var(--ink); }
+    .hero { padding:64px 0 38px; max-width:850px; }
+    .eyebrow { color:var(--teal); text-transform:uppercase; letter-spacing:.13em; font-size:12px; font-weight:750; }
+    h1 { font-size:clamp(35px,5.5vw,64px); line-height:1.12; letter-spacing:-.045em; margin:18px 0 24px; }
+    .lead { font-size:21px; color:var(--muted); }
+    .buttons { display:flex; flex-wrap:wrap; gap:12px; margin:28px 0; }
+    .button { display:inline-block; border:1px solid var(--teal); padding:11px 19px; border-radius:7px; text-decoration:none; font-weight:650; }
+    .primary { background:var(--teal); color:white; }
+    .metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:10px 0 44px; }
+    .metric { padding:23px; border:1px solid var(--line); border-radius:10px; background:white; }
+    .metric strong { display:block; font-size:31px; line-height:1.3; letter-spacing:-.03em; }
+    .metric span { display:block; color:var(--muted); font-size:15px; margin-top:8px; }
+    section { padding:28px 0; border-top:1px solid var(--line); }
+    h2 { font-size:27px; line-height:1.3; margin:0 0 16px; letter-spacing:-.025em; }
+    h3 { font-size:19px; }
+    p { max-width:850px; }
+    li { padding:4px 0; }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; font-size:15px; background:white; }
+    th,td { text-align:left; padding:14px 16px; border-bottom:1px solid var(--line); }
+    th { background:#eaf1f1; }
+    figure { margin:25px 0; padding:16px; background:white; border:1px solid var(--line); border-radius:9px; }
+    figure img { width:100%; height:auto; display:block; }
+    figcaption { color:var(--muted); font-size:14px; margin-top:12px; }
+    .note { border-left:3px solid var(--teal); padding:5px 20px; color:var(--muted); }
+    footer { padding:28px 0 42px; color:var(--muted); font-size:14px; }
+    a:focus-visible { outline:3px solid #d4a838; outline-offset:5px; }
+    @media(max-width:650px) { .metrics { grid-template-columns:1fr; } .hero { padding-top:38px; } header { font-size:14px; } .lead { font-size:18px; } th,td { padding:11px; } }
+  </style>
+</head>
+<body>
+<header><a class="name" href="https://andrewlaabs.com">Andrew Laabs</a><a href="https://github.com/fuzsoccer/dataScienceProjects">Data science portfolio ↗</a></header>
+<main>
+  <div class="hero">
+    <div class="eyebrow">Healthcare · Randomized experiments · Python</div>
+    <h1>Do personalized risk messages increase flu vaccination?</h1>
+    <p class="lead">A secondary analysis of a five-arm field study, examining whether risk information and personalized explanations improve recorded vaccination uptake.</p>
+    <div class="buttons"><a class="button primary" href="analysis.html">Read the full analysis</a><a class="button" href="https://github.com/fuzsoccer/dataScienceProjects/tree/main/VaccinationNotification">View the code</a></div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><strong>42,481</strong><span>Patients in the analysis population</span></div>
+    <div class="metric"><strong>5 message arms</strong><span>No outreach, reminder, and three high-risk approaches</span></div>
+    <div class="metric"><strong>+2.57 pp</strong><span>Pooled high-risk messages versus no outreach</span></div>
+  </div>
+  <section>
+    <h2>The question</h2>
+    <p>A reminder may prompt action. Does explaining a patient's elevated risk add value? And does naming an algorithm or supplying more personalized reasons change the response?</p>
+    <p>Patients were randomly assigned to no outreach, a basic reminder, high-risk information alone, a medical-record explanation with reasons, or an algorithm explanation with reasons. Within the two explanation arms, patients were also randomized to one or three reasons.</p>
+  </section>
+  <section>
+    <h2>What the analysis found</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Comparison</th><th scope="col">Difference</th><th scope="col">95% robust interval</th></tr></thead>
+      <tbody>
+        <tr><td>Pooled high-risk messages vs no outreach</td><td>+2.57 pp</td><td>+1.42 to +3.71 pp</td></tr>
+        <tr><td>Pooled high-risk messages vs basic reminder</td><td>+1.14 pp</td><td>−0.01 to +2.30 pp</td></tr>
+        <tr><td>Three reasons vs one, equal average across explanation arms</td><td>−0.70 pp</td><td>−2.12 to +0.73 pp</td></tr>
+      </tbody>
+    </table></div>
+    <p>High-risk messaging exceeded no outreach by about 26 recorded vaccinations per 1,000 analyzed patients. Its advantage over a basic reminder was less certain. Additional reasons showed no clear incremental benefit.</p>
+    <figure><img src="vaccination_rates.png" alt="Vaccination rates with 95 percent Wilson intervals: passive control 31.51 percent, basic reminder 32.94, high risk only 34.57, medical records with reasons 34.09, and algorithm with reasons 33.58." width="1424" height="735"><figcaption>Observed vaccination by assigned arm. Separate arm intervals are not intervals for differences between arms.</figcaption></figure>
+  </section>
+  <section>
+    <h2>My contribution</h2>
+    <p>The original researchers designed and conducted the trial. My contribution is the reproducible Python analysis: auditing the source data, replicating model comparisons, evaluating uncertainty, and explaining what the evidence supports.</p>
+    <ul><li>Validated patient identifiers, outcomes, exclusions, and baseline balance.</li><li>Reproduced source models and independently checked conventional estimates against R.</li><li>Added robust intervals, risk-stratum adjustment, and population/model sensitivity checks.</li><li>Analyzed the randomized reasons-count interaction in a self-contained notebook.</li></ul>
+  </section>
+  <section>
+    <h2>What more explanation changed</h2>
+    <figure><img src="reasons_effects.png" alt="Three-versus-one-reason effects: medical records minus 1.71 percentage points, algorithm plus 0.32; interaction plus 2.03; equal-arm average minus 0.70. All 95 percent robust intervals include zero." width="1424" height="735"><figcaption>The interaction asks whether the reasons-count effect differs by framing. Neither it nor the average establishes a benefit or equivalence.</figcaption></figure>
+  </section>
+  <section>
+    <h2>How to interpret the findings</h2>
+    <div class="note"><p>The main analysis excludes some enrolled patients. Shared addresses may create dependence or spillovers, and recorded outcomes may be incomplete. Sensitivity checks do not remove all these limitations.</p><p>Confidence intervals are individual 95% HC1 intervals. Multiple-testing adjustments are applied within stated comparison families, without global error control across the project. Non-significant results do not prove equivalence or identify a mechanism.</p></div>
+    <p>These results support further evaluation of high-risk outreach, while leaving its incremental advantage over a standard reminder less certain. They do not show that the highest observed arm is best.</p>
+    <div class="buttons"><a class="button primary" href="analysis.html">Explore the notebook</a><a class="button" href="https://github.com/fuzsoccer/dataScienceProjects/blob/main/VaccinationNotification/reports/source_reconciliation.md">Read the source checks</a></div>
+  </section>
+  <section><h2>Source and attribution</h2><p>Original study: Rosenbaum and colleagues, <a href="https://doi.org/10.1038/s41562-026-02603-4">Algorithm-assisted personalized risk communication to encourage flu vaccination in the USA: three randomized field trials</a>. Study 2: <a href="https://clinicaltrials.gov/study/NCT05009251">NCT05009251</a>. Source data and code: <a href="https://osf.io/mqbux/">OSF</a>.</p><p>This is a partial replication and extension using the manuscript release. Known source discrepancies and unavailable verbatim message text are documented in the project. This website publishes aggregate results; it does not distribute patient-level data.</p></section>
+</main>
+<footer>Andrew Laabs · Data science portfolio · <a href="https://andrewlaabs.com">andrewlaabs.com</a></footer>
+</body>
+</html>
