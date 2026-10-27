@@ -63,4 +63,4 @@ Source: Rosenbaum and colleagues, *Algorithm-assisted personalized risk communic
 
 The publication package omits raw patient-level data and third-party documents/code because the source project's API has no project-level license recorded. Source acquisition remains reproducible. See [third-party notices](THIRD_PARTY_NOTICES.md). The complete working package retains the user-supplied source files for personal analysis.
 
-This is a finished portfolio analysis of the stated questions, with source discrepancies and unavailable verbatim message text documented. It is not a complete replication of every published study analysis. Nothing has been uploaded or published externally.
+This is a finished portfolio analysis of the stated questions, with source discrepancies and unavailable verbatim message text documented. It is not a complete replication of every published study analysis. The case study and rendered notebook are published through GitHub Pages from the repository's `docs/` folder. The GoDaddy page is managed separately.
