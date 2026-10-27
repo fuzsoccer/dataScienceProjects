@@ -13,6 +13,7 @@ This repository serves as a portfolio of hands-on data science work, demonstrati
 - Time-series analysis and segmentation  
 - Signal processing techniques applied to financial data  
 - Statistical modeling and feature engineering  
+- Randomized experiments and A/B testing  
 - Predictive machine learning and model evaluation  
 - Visualization for insight generation  
 - End-to-end analytical workflows  
@@ -127,6 +128,32 @@ On **14,653 reserved test encounters**, logistic regression achieved a **ROC AUC
 - Model comparison, uncertainty, and operational trade-offs
 
 [Explore the project](./HospitalReadmissions/)
+
+### Vaccination Messaging: Multi-Arm A/B Testing
+
+This project analyzes an existing **five-arm randomized vaccination messaging study**, using **42,481 patients** retained in the manuscript analysis population.
+
+It examines whether personalized high-risk messages improve recorded influenza vaccination compared with a basic reminder or no outreach, and whether medical-record explanations, algorithm framing, or additional personalized reasons add value.
+
+#### Key Components:
+
+- Data integrity, missingness, exclusion, and baseline balance checks
+- Source-aligned regression models with robust confidence intervals and multiple-comparison adjustments
+- Risk-stratum adjustment, alternative analysis populations, and logistic sensitivity checks
+- A randomized one-versus-three reasons interaction analysis
+- A self-contained notebook with inline code, saved tables, and charts; conventional estimates independently validated against R
+
+#### Main Finding:
+
+Pooled high-risk messages exceeded no outreach by **2.57 percentage points** (95% robust confidence interval: **1.42–3.71 percentage points**). Their **1.14-point** advantage over a basic reminder remained uncertain, and sending three reasons rather than one showed no clear benefit. Conclusions account for analysis exclusions and possible household effects; non-significant results do not establish equivalence.
+
+#### Key Focus:
+
+- Multi-arm A/B testing and randomized experiment analysis
+- Treatment interactions, effect sizes, and statistical uncertainty
+- Reproducible analysis and transparent source attribution
+
+[Explore the project](./VaccinationNotification/) · [View the notebook](./VaccinationNotification/notebooks/01_study2_eda.ipynb)
 
 ---
 
