@@ -1,6 +1,6 @@
 # 📊 Data Science Projects
 
-A collection of applied data science projects focused on **time-series analysis, statistical modeling, causal inference, and visualization using real-world data**.
+A collection of applied data science projects focused on **time-series analysis, statistical modeling, causal inference, predictive machine learning, and visualization using real-world data**.
 
 This repository showcases practical implementations of data science techniques using Python, with an emphasis on transforming noisy datasets into structured, actionable insights.
 
@@ -13,6 +13,7 @@ This repository serves as a portfolio of hands-on data science work, demonstrati
 - Time-series analysis and segmentation  
 - Signal processing techniques applied to financial data  
 - Statistical modeling and feature engineering  
+- Predictive machine learning and model evaluation  
 - Visualization for insight generation  
 - End-to-end analytical workflows  
 
@@ -95,6 +96,38 @@ Lottery selection increased the estimated probability of any recorded emergency 
 
 [Explore the project](./OregonMedicaidED/)
 
+### Hospital Readmission Prediction
+
+This project predicts **recorded inpatient readmission in less than 30 days** among encounters involving patients with diabetes who are discharged home, using historical UCI hospital data.
+
+#### Key Components:
+
+- **Data Preparation**
+  - Defined a home-discharge cohort and reviewed missing values
+  - Kept each patient's encounters within one training, validation, or test group
+
+- **Predictive Modeling**
+  - Compared a constant-risk baseline, logistic regression, and a random forest
+  - Fitted preprocessing on training data only
+  - Retained logistic regression because the forest's validation improvement fell below the predefined practical requirement
+
+- **Evaluation and Visualization**
+  - Assessed ranking, probability calibration, and performance at an illustrative 20% review capacity
+  - Estimated uncertainty using a patient-level bootstrap
+  - Created Python figures and a Tableau companion dashboard using aggregate results
+
+#### Main Finding:
+
+On **14,653 reserved test encounters**, logistic regression achieved a **ROC AUC of 0.657**. Reviewing the highest-scoring **20%** flagged **38.9% of recorded readmissions**, with **18.9% precision**. These findings describe historical prediction performance; they do not establish that follow-up would prevent readmissions.
+
+#### Key Focus:
+
+- Classification and interpretable predictive modeling
+- Patient-aware validation and data leakage prevention
+- Model comparison, uncertainty, and operational trade-offs
+
+[Explore the project](./HospitalReadmissions/)
+
 ---
 
 ## 🚀 How to Run
@@ -104,3 +137,5 @@ Lottery selection increased the estimated probability of any recorded emergency 
 git clone https://github.com/fuzsoccer/dataScienceProjects.git
 cd dataScienceProjects
 ```
+
+Follow each project's README for its data requirements, dependencies, and instructions.
