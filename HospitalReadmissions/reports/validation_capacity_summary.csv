@@ -1,0 +1,2 @@
+evaluation_set,reviewed_encounters,reviewed_fraction,true_positives,false_positives,false_negatives,true_negatives,precision,recall,precision_lift,lowest_flagged_score,random_review_expected_true_positives,random_review_expected_precision,random_review_expected_recall
+validation,2906,0.20005507366102163,481,2425,892,10728,0.1655196145905024,0.3503277494537509,1.7511565342619357,0.11295618312053193,274.6756161365827,0.09452017072834917,0.20005507366102163

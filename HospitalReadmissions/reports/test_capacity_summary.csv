@@ -1,0 +1,2 @@
+model,evaluation_set,encounters,patients,recorded_readmissions,recorded_readmission_rate,reviewed_encounters,reviewed_fraction,true_positives,false_positives,false_negatives,true_negatives,precision,recall,precision_lift
+Logistic regression,test,14653,10987,1425,0.0972497099570054,2931,0.20002729816419845,555,2376,870,10852,0.18935516888433981,0.3894736842105263,1.9471026594120922

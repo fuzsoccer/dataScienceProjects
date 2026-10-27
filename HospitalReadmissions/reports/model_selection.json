@@ -1,0 +1,12 @@
+{
+  "chosen_model": "Logistic regression",
+  "decision_uses": "validation only",
+  "training": "training partition only; no refit on validation",
+  "policy": "rank top 20% of eligible encounters; round quota up; break score ties by encounter ID",
+  "selection_checks": {
+    "recall_gain_at_least_2pp": false,
+    "average_precision_not_lower": true,
+    "brier_increase_at_most_0_002": true
+  },
+  "test_predictions_computed_at_selection": false
+}

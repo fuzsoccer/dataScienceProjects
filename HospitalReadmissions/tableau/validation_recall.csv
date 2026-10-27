@@ -1,0 +1,4 @@
+recall_fraction,comparison_group
+0.2000550736610216,Random
+0.3503277494537509,Logistic
+0.3590677348871085,Forest
