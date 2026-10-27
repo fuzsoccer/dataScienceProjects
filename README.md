@@ -153,7 +153,7 @@ Pooled high-risk messages exceeded no outreach by **2.57 percentage points** (95
 - Treatment interactions, effect sizes, and statistical uncertainty
 - Reproducible analysis and transparent source attribution
 
-[Explore the project](./VaccinationNotification/) · [View the notebook](./VaccinationNotification/notebooks/01_study2_eda.ipynb)
+[Explore the project](./VaccinationNotification/) · [View the notebook](./VaccinationNotification/notebooks/01_study2_eda.ipynb) · [Read the case study online](https://fuzsoccer.github.io/dataScienceProjects/vaccination-messaging/)
 
 ---
 
