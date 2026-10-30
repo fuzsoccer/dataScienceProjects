@@ -1,0 +1,92 @@
+{
+  "revisions": {
+    "statsbomb": "4b73468fc5b0f1950f9f66fada70ad3a4f9327cb",
+    "metrica": "e706dd506b360d69d9d123d5b8026e7294b13996"
+  },
+  "files": {
+    "statsbomb/README.md": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/README.md",
+      "sha256": "98a757466c4d931dba4b6c4290c55c2fe74e4550d7455bbe05fd884dc831aff3",
+      "bytes": 1753,
+      "downloaded_at": "2026-10-29T22:38:40.757864+00:00"
+    },
+    "metrica/README.md": {
+      "url": "https://raw.githubusercontent.com/metrica-sports/sample-data/e706dd506b360d69d9d123d5b8026e7294b13996/README.md",
+      "sha256": "fa4b178e62c4d3559e13b6d3a4fdd42e45293461c2ab656e05a13360a6adcbcf",
+      "bytes": 2901,
+      "downloaded_at": "2026-10-29T22:38:41.155846+00:00"
+    },
+    "statsbomb/LICENSE.pdf": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/LICENSE.pdf",
+      "sha256": "a5462e69aeb71a39268b760b110c5c2190a2e0cee3015ba976f66bd71f6c2bb4",
+      "bytes": 165130,
+      "downloaded_at": "2026-10-29T22:38:41.410785+00:00"
+    },
+    "statsbomb/competitions.json": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/data/competitions.json",
+      "sha256": "e6cd42f5d8956d6aa30fb917ce8d4c3b3df1879a93f02f8feba820930a6971fa",
+      "bytes": 34887,
+      "downloaded_at": "2026-10-29T22:38:41.597884+00:00"
+    },
+    "statsbomb/matches/43_106.json": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/data/matches/43/106.json",
+      "sha256": "b9d7516dc9919a825f04c204ca85487958c8a2431e84140a48e944934661efc7",
+      "bytes": 119132,
+      "downloaded_at": "2026-10-29T22:38:41.918910+00:00"
+    },
+    "statsbomb/events/3857286.json": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/data/events/3857286.json",
+      "sha256": "27c12e2f24a7679d7bf60690c0832e61e04e56bdf1d62323c33b93829c673ea9",
+      "bytes": 2799478,
+      "downloaded_at": "2026-10-29T22:39:28.901408+00:00"
+    },
+    "statsbomb/lineups/3857286.json": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/data/lineups/3857286.json",
+      "sha256": "f6b3ac0825cd7567ef6d36139f455f1890f7e6330908a3c84c88a5a8edb1cedb",
+      "bytes": 23164,
+      "downloaded_at": "2026-10-29T22:39:29.118312+00:00"
+    },
+    "statsbomb/events/3857271.json": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/data/events/3857271.json",
+      "sha256": "3195e45476b96c3257e15043ac4fe17bbb640c548a4edb74d2c3b3eb8b3519e3",
+      "bytes": 3063347,
+      "downloaded_at": "2026-10-29T22:39:29.557374+00:00"
+    },
+    "statsbomb/lineups/3857271.json": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/data/lineups/3857271.json",
+      "sha256": "6882a76ac38087cd8e3fac61c855ab4a575d5a4cd003ded84dcf078b22d020e0",
+      "bytes": 25857,
+      "downloaded_at": "2026-10-29T22:39:29.984834+00:00"
+    },
+    "statsbomb/events/3857282.json": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/data/events/3857282.json",
+      "sha256": "2a6d3d04b6257bfc35a2e0c5a35f05a8997a089191ce27d0c2a5f02108f3b9db",
+      "bytes": 3081742,
+      "downloaded_at": "2026-10-29T22:39:30.941473+00:00"
+    },
+    "statsbomb/lineups/3857282.json": {
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/4b73468fc5b0f1950f9f66fada70ad3a4f9327cb/data/lineups/3857282.json",
+      "sha256": "f68de472484973f1180f029ef54cefc64d3f08233ce6d57f85dec39451a3b1b9",
+      "bytes": 24501,
+      "downloaded_at": "2026-10-29T22:39:31.146538+00:00"
+    },
+    "metrica/Sample_Game_1_RawTrackingData_Home_Team.csv.gz": {
+      "url": "https://raw.githubusercontent.com/metrica-sports/sample-data/e706dd506b360d69d9d123d5b8026e7294b13996/data/Sample_Game_1/Sample_Game_1_RawTrackingData_Home_Team.csv",
+      "sha256": "0a3d0eff7785950379c587d3597b86a2d91c2492281b4652e1abb97c99b6b364",
+      "bytes": 32782961,
+      "downloaded_at": "2026-10-29T22:39:32.740399+00:00"
+    },
+    "metrica/Sample_Game_1_RawTrackingData_Away_Team.csv.gz": {
+      "url": "https://raw.githubusercontent.com/metrica-sports/sample-data/e706dd506b360d69d9d123d5b8026e7294b13996/data/Sample_Game_1/Sample_Game_1_RawTrackingData_Away_Team.csv",
+      "sha256": "0a3df68a92af0290ede472e62de3b6489ddee29223da09bdf0cf76c8e0ab0618",
+      "bytes": 32782073,
+      "downloaded_at": "2026-10-29T22:42:23.671783+00:00"
+    },
+    "metrica/Sample_Game_1_RawEventsData.csv": {
+      "url": "https://raw.githubusercontent.com/metrica-sports/sample-data/e706dd506b360d69d9d123d5b8026e7294b13996/data/Sample_Game_1/Sample_Game_1_RawEventsData.csv",
+      "sha256": "097dda6345e17390dca095331458fd00e47960c480c76f4356fd4edf2575ef05",
+      "bytes": 139446,
+      "downloaded_at": "2026-10-29T22:42:23.969606+00:00"
+    }
+  }
+}

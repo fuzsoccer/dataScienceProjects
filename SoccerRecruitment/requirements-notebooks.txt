@@ -1,0 +1,5 @@
+# Direct notebook/plotting versions used in the verified Python 3.12.7 run.
+# This pins direct tools, not the entire transitive dependency environment.
+jupyterlab==4.2.5
+ipykernel==6.28.0
+matplotlib==3.9.2
