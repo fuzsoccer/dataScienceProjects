@@ -33,6 +33,30 @@ Projects are developed in a notebook-first format to support iterative explorati
 
 ## 📈 Featured Projects
 
+### Soccer Recruitment Analytics
+
+This project uses **StatsBomb open event data** to build explainable scouting-review profiles for **strikers, central midfielders, and wingers**. A location-based Expected Threat model fitted on the 2018 World Cup is applied to the separate 2022 tournament, with audited participation time and role-specific contributions.
+
+#### Key Components:
+
+- Pinned public-data acquisition, source checksums, and automated quality checks
+- Participation-time reconstruction and per-90 player profiles
+- Passing and carrying value, action maps, and match-level contribution analysis
+- Grid-resolution and minutes-threshold sensitivity checks
+- Transparent role-based review candidates with limitations and next scouting questions
+
+#### Main Finding:
+
+At a **300-minute eligibility threshold**, each alternative grid retained **6 of the baseline's top 10** movement-xT/90 players. This illustrates why exact scouting shortlists should be reviewed for model sensitivity rather than treated as definitive player rankings.
+
+#### Key Focus:
+
+- Sports analytics and possession-value modeling
+- Temporally separated fitting/application and sensitivity analysis
+- Reproducible analysis and explainable scouting decisions
+
+[Explore the project](./SoccerRecruitment/) · [Read the scouting case study](./SoccerRecruitment/docs/scouting_case_study.md) · [Review model sensitivity](./SoccerRecruitment/docs/xt_sensitivity_findings.md)
+
 ### Elliott Wave Approximation via Signal Processing
 
 This project implements an algorithmic approach to approximate **Elliott Wave structures** in financial time series data.

@@ -1,0 +1,47 @@
+name: Soccer recruitment checks
+
+on:
+  push:
+    paths:
+      - 'SoccerRecruitment/**'
+      - '.github/workflows/soccer-checks.yml'
+  pull_request:
+    paths:
+      - 'SoccerRecruitment/**'
+      - '.github/workflows/soccer-checks.yml'
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: SoccerRecruitment
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v7
+        env:
+          # Allow indexing legacy Windows-incompatible names outside the sparse checkout.
+          # Only SoccerRecruitment and the workflow directory are materialized.
+          GIT_CONFIG_COUNT: '1'
+          GIT_CONFIG_KEY_0: core.protectNTFS
+          GIT_CONFIG_VALUE_0: 'false'
+        with:
+          # Keep checks independent of unrelated portfolio filenames on Windows.
+          sparse-checkout: |
+            SoccerRecruitment
+            .github/workflows
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run offline unit and notebook-contract tests
+        run: python -m unittest discover -s tests -v
+      - name: Check command-line entry point
+        run: python scripts/run.py --help
