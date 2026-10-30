@@ -1,15 +1,28 @@
-name: Lightweight checks
+name: Soccer recruitment checks
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'SoccerRecruitment/**'
+      - '.github/workflows/soccer-checks.yml'
+  pull_request:
+    paths:
+      - 'SoccerRecruitment/**'
+      - '.github/workflows/soccer-checks.yml'
 
 permissions:
   contents: read
 
+defaults:
+  run:
+    working-directory: SoccerRecruitment
+
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest]
         python-version: ['3.11', '3.12']
     steps:
       - uses: actions/checkout@v7

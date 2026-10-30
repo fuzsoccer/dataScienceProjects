@@ -31,9 +31,10 @@ Default eligibility requires at least 300 elapsed minutes, 50% of positioned eve
 
 Use Python **3.11 or newer**; the full analysis and figures were verified with Python **3.12.7**. The analytical calculations use the standard library. JupyterLab supplies the notebook interface and matplotlib supplies the figures.
 
-From the repository root on Windows:
+After cloning the portfolio repository, run these commands from its root on Windows:
 
 ```powershell
+cd SoccerRecruitment
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-notebooks.txt
 .\.venv\Scripts\python.exe -m jupyter lab
