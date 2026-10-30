@@ -34,14 +34,16 @@ Use Python **3.11 or newer**; the full analysis and figures were verified with P
 To fetch only this project, use a sparse checkout. This also avoids unrelated portfolio filenames that are incompatible with Windows. On Windows:
 
 ```powershell
-git clone --filter=blob:none --sparse https://github.com/fuzsoccer/dataScienceProjects.git
+git -c core.protectNTFS=false clone --filter=blob:none --sparse https://github.com/fuzsoccer/dataScienceProjects.git
 cd dataScienceProjects
-git sparse-checkout set SoccerRecruitment
+git -c core.protectNTFS=false sparse-checkout set SoccerRecruitment
 cd SoccerRecruitment
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-notebooks.txt
 .\.venv\Scripts\python.exe -m jupyter lab
 ```
+
+The two `-c core.protectNTFS=false` options let Git index existing legacy filenames elsewhere in this portfolio while the sparse checkout keeps those files off disk; they apply to those commands only. The soccer project filenames themselves are portable. If you already have a working checkout, start with `cd SoccerRecruitment`.
 
 On macOS/Linux, use `.venv/bin/python` instead of `.venv\Scripts\python.exe`. In Jupyter select that environment's kernel and run notebooks in order. Notebook 01 enables acquisition and feature generation on a fresh checkout; later runs can reuse cached files. No API keys or dataset ZIPs are needed. Public downloads require internet, can occupy hundreds of MB and may take several minutes. Keep the complete project folder together.
 
