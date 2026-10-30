@@ -21,11 +21,17 @@ jobs:
   tests:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ['3.11', '3.12']
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Keep checks independent of unrelated portfolio filenames on Windows.
+          sparse-checkout: |
+            SoccerRecruitment
+            .github/workflows
       - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
