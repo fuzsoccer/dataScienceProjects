@@ -27,6 +27,12 @@ jobs:
         python-version: ['3.11', '3.12']
     steps:
       - uses: actions/checkout@v7
+        env:
+          # Allow indexing legacy Windows-incompatible names outside the sparse checkout.
+          # Only SoccerRecruitment and the workflow directory are materialized.
+          GIT_CONFIG_COUNT: '1'
+          GIT_CONFIG_KEY_0: core.protectNTFS
+          GIT_CONFIG_VALUE_0: 'false'
         with:
           # Keep checks independent of unrelated portfolio filenames on Windows.
           sparse-checkout: |
