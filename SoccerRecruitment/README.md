@@ -31,9 +31,12 @@ Default eligibility requires at least 300 elapsed minutes, 50% of positioned eve
 
 Use Python **3.11 or newer**; the full analysis and figures were verified with Python **3.12.7**. The analytical calculations use the standard library. JupyterLab supplies the notebook interface and matplotlib supplies the figures.
 
-After cloning the portfolio repository, run these commands from its root on Windows:
+To fetch only this project, use a sparse checkout. This also avoids unrelated portfolio filenames that are incompatible with Windows. On Windows:
 
 ```powershell
+git clone --filter=blob:none --sparse https://github.com/fuzsoccer/dataScienceProjects.git
+cd dataScienceProjects
+git sparse-checkout set SoccerRecruitment
 cd SoccerRecruitment
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-notebooks.txt
