@@ -1,0 +1,13 @@
+# Credentials and OAuth tokens
+**/oauth2.json
+**/*oauth*.json
+**/*token*.json
+**/credentials.json
+.env
+.env.*
+!.env.example
+# Editor temporary files
+*.swp
+*.swo
+*.swm
+*~
